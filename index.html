@@ -7,19 +7,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/jquery.mobile-1.0.css" />
     <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style.css" />
     
     <script src="js/phonegap-1.1.0.js"></script>
     <script src="js/jquery-1.7.1.min.js"></script>
-       
     <script src="js/script.js"></script>
     <script src="js/jquery.mobile-1.0.min.js"></script>
-    <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiDNVH3xsDq4YPf8dMkHBzXrH17wF_JZw&sensor=false">
-    </script>
-        <script type="text/javascript">
-            
-            </script>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
             $("a.logoff").click(function() {
@@ -41,7 +34,6 @@
             });
             
             $("#select-job").change(function() {
-                                   
                 if (!(id = $(this).val()))
                     return false;
                 $.mobile.showPageLoadingMsg();
@@ -66,26 +58,18 @@
                         $(".job-details .email").html(rsp.job.job_agent_email);
                         $(".job-note .note").html(rsp.job.job_notes);
                         $(".join-job").show();
-                        var geocoder = new google.maps.Geocoder();
-                        geocoder.geocode(
-                            { 'address': rsp.job.job_cust_add + ',' + rsp.job.job_cust_city + ','  + rsp.job.job_cust_zip  },//This is hard coded to see the result since none of the job has perfect address. Please create the address in above format and then repalce this line with specific address compoenent : Hiren
-                            function(results, status) {
-                            if(results[0]){
-                                var mapOptions = {
-                                    center: new google.maps.LatLng(results[0].geometry.location.jb, results[0].geometry.location.kb),
-                                    zoom: 15,
-                                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                                };
-                                var map = new google.maps.Map(document.getElementById("job-map"),mapOptions);
-                                var marker = new google.maps.Marker({
-                                    map: map,
-                                    position: results[0].geometry.location
-                                });
+                        var map = new google.maps.Map(
+                            document.getElementById('job-map'), 
+                            {
+                                zoom: 4,
+                                center: new google.maps.LatLng(rsp.job.lat, rsp.job.lng),
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
                             }
+                        );
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(rsp.job.lat, rsp.job.lng),
+                            map: map
                         });
-                       
-                       
-                        
                         
                     },
                     error: function(err) {
@@ -170,7 +154,6 @@
 			 
 			
 			});
-                          
             $.mobile.showPageLoadingMsg();
             $.ajax({
                 type: "POST",
@@ -194,7 +177,7 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    window.location.href = "login.html";
+                    alert("error while processing ...");
                 }
             });
 		});
