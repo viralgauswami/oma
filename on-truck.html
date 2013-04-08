@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.0.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/colorbox.css" />
+    
     <script src="js/phonegap-1.1.0.js"></script>
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/script.js"></script>
@@ -27,7 +28,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                        //alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -55,7 +57,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                       // alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -198,7 +201,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                       // alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -222,7 +226,8 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    alert("error while processing ...");
+                  //  alert("error while processing ...");
+                    jAlert('error while processing ...','');
                 }
             });
         });

@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.0.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/colorbox.css" />
+    
+    <script src="jquery_002.js" type="text/javascript"></script>
+	<script src="jquery_003.js" type="text/javascript"></script>
+	<script src="jquery.js" type="text/javascript"></script>
+	<link href="jquery.css" rel="stylesheet" type="text/css" media="screen">
+	
       <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js";></script>
       <script type="text/javascript" charset="utf-8" src="phonegap.js";></script>
       <script type="text/javascript" charset="utf-8">
@@ -177,7 +183,8 @@
             */
             window.plugins.printPlugin.print(html,
                 function(result) {
-                    alert("Printing successful");
+                  //  alert("Printing successful");
+                    jAlert('Printing successful','');
                 },
                 function(result) {
                     if (!result.available){
@@ -208,7 +215,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                       // alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -236,7 +244,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                      //  alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -497,7 +506,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                        //alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -537,17 +547,20 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                   //     alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
             $("input.submit").click(function() {
                 if (!$(".object-name").val()) {
-                    alert("Please enter object name.");
+                  //  alert("Please enter object name.");
+                    jAlert('Please enter object name.','');
                     return false;
                 }
                 if (!$("#select-category").val()) {
-                    alert("Please select category.");
+                  //  alert("Please select category.");
+                    jAlert('Please select category.','');
                     return false;
                 }
                 var selectedBox = false;
@@ -558,7 +571,8 @@
                     }
                 });
                 if (!selectedBox) {
-                    alert("Please select box / tag / bag.");
+                   // alert("Please select box / tag / bag.");
+                    jAlert('Please select box / tag / bag.','');
                     return false;
                 }
                 $.mobile.showPageLoadingMsg();
@@ -624,7 +638,8 @@
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing2 ...");
+                                     //   alert("error while processing2 ...");
+                                        jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );
@@ -661,7 +676,8 @@
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing3 ...");
+                                        //alert("error while processing3 ...");
+                                        jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );
@@ -679,7 +695,8 @@
                     },
                     error: function (err) {
 						$.mobile.hidePageLoadingMsg();
-                        alert("error while processing1 ...");
+                       // alert("error while processing1 ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -768,17 +785,11 @@
                                 .children("span." + rsp.contentinfo.box).children(".box-item").addClass("selected")
                                 .trigger("click");
                             break;
-                        case "BOX":
-                            var boxId = null;
-                            $(rsp.contents.boxes).each(function (i) {
-                                   if(this.name == rsp.contentinfo.package){
-                                        boxId = this.id;
-                                   }
-                            });
+                        case "box":
                             $(".box-type .type-item.box > .box-item")
                                 .addClass("selected")
                                 .next().removeClass("hidden")
-                                .children(".items").find(".box-item[value='" + boxId + "']").addClass("selected")
+                                .children(".items").find(".box-item[value='" + rsp.contentinfo.box + "']").addClass("selected")
                                 .trigger("click");
                             break;
                         case "notboxedtag":
@@ -816,7 +827,8 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    alert("error while processing ...");
+                   // alert("error while processing ...");
+                    jAlert('error while processing ...','');
                 }
             });
         });
@@ -876,7 +888,9 @@
                         </div>
                         <div class="image">
                             <div class="items">
-                            <img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" />
+                           <!-- <img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" />-->
+                           <div class='image-item'> <img style="display:none;width:70px;height:70px; float: left; margin-top: 68px;" class="add-image" id="smallImage" src="" />
+                            </div>
                             <a    onclick="capturePhoto();"><img src="images/add_image.png" /></a>
                             
                     <!--        <a class="add-image"><img src="images/add_image.png" /></a>-->
@@ -908,16 +922,20 @@
                     <div class="photo-sec hidden">
                         <div class="image">
                             <div class="items">
-                            
-                            <img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage2" src="" />
+                            <div class='image-item'>
+                           <!-- <img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage2" src="" />-->
+                           <img style="display:none;width:70px;height:70px; float: left; margin-top: 68px;" class="add-image" id="smallImage2" src="" />
+                           </div>
                             <a  onclick="capturePhoto2();"><img src="images/add_image.png" /></a>
                             
                             
                             <br/>
                             <br/>
-                             
-                              <img style="display:none;width:70px;height:70px;" class="image-item"   id="smallImage3" src="" />
-                            <a  onclick="capturePhoto3();"><img src="images/add_image.png" /></a>
+                             <div class='image-item'>
+     <!--                         <img style="display:none;width:70px;height:70px;" class="image-item"   id="smallImage3" src="" />-->
+                                 </div>
+                                  <img style="display:none;width:70px;height:70px; float: left; margin-top: 68px;"  id="smallImage3" src="" />
+                            <a  onclick="capturePhoto3();" ><img src="images/add_image.png" /></a>
                             
                            <!-- <a class="add-image"><img src="images/add_image.png" /></a>-->
                             
