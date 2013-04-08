@@ -261,24 +261,24 @@ alert(ar2);
                 }
                 $(".room-list").append(roomItem);
             });
-          //  $(".add-image").live("click", function() {
-//                var _this = this;
-//                var options = {
-//                    quality: 100,
-//                    destinationType: navigator.camera.DestinationType.FILE_URI
-//             
-//                };
-//                
-//                navigator.camera.getPicture(
-//                    function (uri) {
-//                    	var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /><span class='del'></span></div>");
-//                        $(_this).parent().prepend(imageItem);
-//                        $(imageItem).children("img").attr('src', uri);
-//                    },
-//                    function() {},
-//                    options
-//                );
-//            });
+            $(".add-image").live("click", function() {
+                var _this = this;
+                var options = {
+                    quality: 100,
+                    destinationType: navigator.camera.DestinationType.FILE_URI
+             
+                };
+                
+                navigator.camera.getPicture(
+                    function (uri) {
+                    	var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /><span class='del'></span></div>");
+                        $(_this).parent().prepend(imageItem);
+                        $(imageItem).children("img").attr('src', uri);
+                    },
+                    function() {},
+                    options
+                );
+            });
             $(".image-item span.del").live("click", function() {
                 $(this).parent().remove();
             });
@@ -438,10 +438,11 @@ alert(ar2);
                     </div>
                  <div class="image">
                      
-                    <div class="items">
+                    <div class="items" id='boldStuff'>
                     <!--    <div class="image-item">
                             <img src="" />
                         </div>-->
+         
                         <a ><img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" /></a>
                         <a class="add-image" onclick="capturePhoto();"><img src="images/add_image.png" /></a>
                      
@@ -452,7 +453,7 @@ alert(ar2);
                     
                     <div class="clear"></div>
                 </div>
-                    <span id='boldStuff'></span>
+               
                 
             </div>
            
