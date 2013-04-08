@@ -45,7 +45,7 @@
       // Show the captured photo
       // The inline CSS rules are used to resize the image
       //
-  alert(imageData);
+ // alert(imageData);
 	  smallImage.src = "data:image/jpeg;base64," + imageData;
       //document.getElementById('smallImage').getAttribute('src') == "images/logo.png";
 		  if(ar1!="")
@@ -82,7 +82,7 @@
 		  }
 //alert(print(fruits));
 
-alert(ar2);
+//alert(ar2);
  $(document).ready(function() {
  $(".add-image").live("click", function() {
                 var _this = this;
@@ -261,24 +261,24 @@ alert(ar2);
                 }
                 $(".room-list").append(roomItem);
             });
-            $(".add-image").live("click", function() {
-                var _this = this;
-                var options = {
-                    quality: 100,
-                    destinationType: navigator.camera.DestinationType.FILE_URI
-             
-                };
-                
-                navigator.camera.getPicture(
-                    function (uri) {
-                    	var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /><span class='del'></span></div>");
-                        $(_this).parent().prepend(imageItem);
-                        $(imageItem).children("img").attr('src', uri);
-                    },
-                    function() {},
-                    options
-                );
-            });
+          //  $(".add-image").live("click", function() {
+//                var _this = this;
+//                var options = {
+//                    quality: 100,
+//                    destinationType: navigator.camera.DestinationType.FILE_URI
+//             
+//                };
+//                
+//                navigator.camera.getPicture(
+//                    function (uri) {
+//                    	var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /><span class='del'></span></div>");
+//                        $(_this).parent().prepend(imageItem);
+//                        $(imageItem).children("img").attr('src', uri);
+//                    },
+//                    function() {},
+//                    options
+//                );
+//            });
             $(".image-item span.del").live("click", function() {
                 $(this).parent().remove();
             });
