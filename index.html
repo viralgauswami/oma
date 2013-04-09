@@ -35,7 +35,9 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        jAlert('error while processing ...1','');
+                       // jAlert('error while processing ...1','');
+					     jAlert('Your Session has expired,pleass Login.','');
+					window.location.href = "login.html";
                     
                         //alert("error while processing ...");
                     }
