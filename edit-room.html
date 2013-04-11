@@ -199,9 +199,8 @@ alert(imageData);
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                     //   alert("error while processing ...");
-                        jAlert('Your Session has expired,pleass Login.','');
-					window.location.href = "login.html";
+                        window.location.href = "login.html";
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -232,7 +231,7 @@ alert(imageData);
                                     },
                                     error: function(err) {
                                         $.mobile.hidePageLoadingMsg();
-                                      //  alert("error while processing ...");
+                                       window.location.href = "login.html";
                                         jAlert('error while processing ...','');
                                     }
                                 });
@@ -260,7 +259,7 @@ alert(imageData);
                                     },
                                     error: function(err) {
                                         $.mobile.hidePageLoadingMsg();
-                                        //alert("error while processing ...");
+                                        window.location.href = "login.html";
                                         jAlert('error while processing ...','');
                                     }
                                 });
@@ -366,7 +365,7 @@ alert(imageData);
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                       // alert("error while processing ...");
+                                       // window.location.href = "login.html";
                                         jAlert('error while processing ...','');
                                     }, 
                                     options
@@ -386,7 +385,7 @@ alert(imageData);
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                       // alert("error while processing ...");
+                        window.location.href = "login.html";
                         jAlert('error while processing ...','');
                     }
                 });
@@ -412,7 +411,7 @@ alert(imageData);
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                  //  alert("error while processing ...");
+                   window.location.href = "login.html";
                     jAlert('error while processing ...','');
                 }
             });
