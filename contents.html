@@ -236,7 +236,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        alert("error while processing ...");
                     }
                 });
             });
@@ -264,7 +264,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        alert("error while processing ...");
                     }
                 });
             });
@@ -287,7 +287,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        alert("error while processing ...");
                     }
                 });                
             });
@@ -542,7 +542,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        alert("error while processing ...");
                     }
                 });
             });
@@ -640,7 +640,7 @@
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        window.location.href = "login.html";
+                                        alert("error while processing ...");
                                     }, 
                                     options
                                 );
@@ -667,7 +667,7 @@
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        window.location.href = "login.html";
+                                        alert("error while processing ...");
                                     }, 
                                     options
                                 );
@@ -681,7 +681,7 @@
                     error:  function (err) {
   					  window.location.href = "contents.html";
                         /* $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html"; */
+                        alert("error while processing ..."); */
                     } 
                 });
             });
@@ -730,7 +730,7 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    window.location.href = "login.html";
+                    alert("error while processing ...");
                 }
             });
             if (params && params["add-item"] == "true") {
@@ -812,8 +812,8 @@
                     <div class="damage-sec">
                         <div class="select state">
                           <select name="item_total_loss" id="item_total_loss" data-icon="arrow-r" data-iconpos="right">
-                                <option value="N" selected >No</option>
-                                <option value="Y">Yes</option>
+                                <option value="N" selected >Item total loss.No</option>
+                                <option value="Y">Item total loss.Yes</option>
                                
                             </select>
                            
@@ -829,7 +829,7 @@
                         <div class="select state">
                        
                             <select name="damage-state" id="damage-state" data-icon="arrow-r" data-iconpos="right">
-                                <option value="">Is this item damaged?</option>
+                  <!--              <option value="">Is this item damaged?</option>-->
                                 <option value="damaged">Damaged</option>
                                 <option value="notdamaged">Not Damaged</option>
                             </select>

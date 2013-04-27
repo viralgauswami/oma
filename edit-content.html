@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.0.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/colorbox.css" />
+    
+    <script src="jquery_002.js" type="text/javascript"></script>
+	<script src="jquery_003.js" type="text/javascript"></script>
+	<script src="jquery.js" type="text/javascript"></script>
+	<link href="jquery.css" rel="stylesheet" type="text/css" media="screen">
+    
       <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js";></script>
       <script type="text/javascript" charset="utf-8" src="phonegap.js";></script>
       <script type="text/javascript" charset="utf-8">
@@ -208,7 +214,11 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                       // alert("error while processing ...");
+					   
+					     jAlert('Your Session has expired,pleass Login.','');
+					window.location.href = "login.html";
+                    
                     }
                 });
             });
@@ -236,7 +246,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        alert("error while processing ...");
                     }
                 });
             });
@@ -259,7 +269,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        alert("error while processing ...");
                     }
                 });
             });
@@ -497,7 +507,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        alert("error while processing ...");
                     }
                 });
             });
@@ -537,7 +547,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        alert("error while processing ...");
                     }
                 });
             });
@@ -816,7 +826,7 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    window.location.href = "login.html";
+                    alert("error while processing ...");
                 }
             });
         });
@@ -896,7 +906,7 @@
                     <div class="damage-sec">
                         <div class="select state">
                             <select name="damage-state" id="damage-state" data-icon="arrow-r" data-iconpos="right">
-                                <option value="">Is this item damaged?</option>
+                               <!-- <option value="">Is this item damaged?</option>-->
                                 <option value="damaged">Damaged</option>
                                 <option value="notdamaged">Not Damaged</option>
                             </select>

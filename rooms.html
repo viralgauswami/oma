@@ -33,8 +33,10 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
-                        jAlert('error while processing ...','');
+                     //   alert("error while processing ...");
+                         jAlert('Your Session has expired,pleass Login.','');
+					window.location.href = "login.html";
+                    
                     }
                 });
             });
@@ -62,7 +64,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        //alert("error while processing ...");
                         jAlert('error while processing ...1','');
                     }
                 });
@@ -87,7 +89,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        //alert("error while processing ...");
                         jAlert('error while processing ...1','');
                     }
                 });
@@ -120,7 +122,7 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    window.location.href = "login.html";
+                   // alert("error while processing ...");
                     jAlert('error while processing ...1','');
                 }
             });

@@ -40,7 +40,7 @@
 					},
 					error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                     //   alert("error while processing ...");
                         jAlert('authentication error','');
 					}
 				});
@@ -59,7 +59,7 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    window.location.href = "login.html";
+                  //  alert("error while processing ...");
                     jAlert('authentication error','');
                 }
             });

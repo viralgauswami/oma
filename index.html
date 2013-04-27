@@ -35,9 +35,11 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                       window.location.href = "login.html";
+                       // jAlert('error while processing ...1','');
+					     jAlert('Your Session has expired,pleass Login.','');
+					window.location.href = "login.html";
                     
-                        //window.location.href = "login.html";
+                        //alert("error while processing ...");
                     }
                 });
             });
@@ -83,7 +85,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                        //alert("error while processing ...");
+                        jAlert('error while processing ...1','');
                     }
                 });
             });
@@ -116,7 +119,7 @@
                                 },
                                 error: function(err) {
                                     $.mobile.hidePageLoadingMsg();
-                                    window.location.href = "login.html";
+                                    alert("error while processing ...");
                                 }
                             });
                         break;
@@ -154,8 +157,8 @@
                                 },
                                 error: function(err) {
                                     $.mobile.hidePageLoadingMsg();
-                                   window.location.href = "login.html";
-
+                                    //alert("error while processing ...");
+                                    jAlert('error while processing ...1','');
                                 }
                             });
 			 
@@ -187,8 +190,8 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    window.location.href = "login.html";
-
+                   // alert("error while processing ...");
+                    jAlert('error while processing ...4');
                 }
             });
 		});
