@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>For Movie Review</title>
+	<link href="css/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="js/jquery.mobile-1.0b3.css" />
+	<link rel="stylesheet" href="css/rating.css" /> 
+   	<link href="css/Site.css" rel="stylesheet" type="text/css" />
+	<link href="css/jqm-docs.css" rel="stylesheet" type="text/css" />
+	
+	<script src="js/jquery-1.7.1.min.js"></script>
+	<script src="js/jquery.mobile-1.0b3.min.js"></script>
+	   	
+	<script type="text/javascript" charset="utf-8" src="cordova-2.1.0.js"></script> 
+ 	<script src="js/jqm-docs.js"></script>  
+ 	
+	<script src="js/extra.js"></script>
+	<script src="js/json2.js"></script>
+	<script src="js/insertreview.js"></script>	
+	<script src="js/search.js"></script>
+	<script src="js/movielisting.js"></script>
+
+	<script src="js/moviedetail.js"></script>
+	<script src="js/validation.js"></script>
+  
+   	<script src="js/jquery-ui-1.8.13.custom.min.js" type="text/javascript"></script>
+   	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+  	<script src="js/jquery.validate.wrapper.js" type="text/javascript"></script>
+  	<script type="text/javascript" src="js/jquery.raty.min.js"></script> 
+</head>
+<body>
+
+	<div data-role="page" id="Home" data-theme="c"> 
+		<div data-role="header" data-position="fixed">
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+				<div data-theme="c" onclick="opening()" data-role="button" >Opening</div>
+				<div data-theme="c" onclick="intheaters()"  data-role="button" >In Theatre</div>
+				<div data-theme="c" onclick="upcoming()"  data-role="button" >UpComing</div>
+				
+				<div data-theme="c" onclick="boxoffice()" data-role="button" >Box Office</div>
+				<a data-theme="c" href="#latest" data-role="button" >Latest Review</a>
+				<br/>
+				<a data-theme="c" href="#listmovie"  data-role="button" >Search Movie</a>
+				<a data-theme="c" href="#searchbyreview" data-role="button">Search Review</a>
+				<br/>
+				<a data-theme="c" href="#about"  data-role="button" >About Us</a>			
+				<div data-theme="c" onclick="exit()" data-role="button" >Exit</div>		
+		</div>
+	</div> 
+
+	<div data-role="page" id="upcoming" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+			<h2>Upcoming Movies</h2>
+			<ul class="ui-listview" data-role="listview" id="upcomingresult" data-filter="true"></ul>
+		</div> 
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#listmovie" data-icon="search">Search Movie</a></li>
+					<li><a href="#searchbyreview" data-icon="search">Search Review</a></li>
+					<li><a href="#latest" data-icon="star" >Latest Review</a></li>
+				</ul>
+			</div>
+		</div> 
+	</div> 
+	
+	<div data-role="page" id="opening" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+			<h2>Opening Movies</h2>
+			<ul class="ui-listview" data-role="listview" id="openingresult" data-filter="true"></ul>
+		</div> 
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#listmovie" data-icon="search">Search Movie</a></li>
+					<li><a href="#searchbyreview" data-icon="search">Search Review</a></li>
+					<li><a href="#latest" data-icon="star" >Latest Review</a></li>
+				</ul>
+			</div>
+		</div> 
+	</div> 
+	
+	<div data-role="page" id="intheaters" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+			<h2>In Theatre Movies</h2>
+			<ul class="ui-listview" data-role="listview" id="intheatersresult" data-filter="true"></ul>
+		</div> 
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#listmovie" data-icon="search">Search Movie</a></li>
+					<li><a href="#searchbyreview" data-icon="search">Search Review</a></li>
+					<li><a href="#latest" data-icon="star" >Latest Review</a></li>
+				</ul>
+			</div>
+		</div> 
+	</div> 
+	
+	<div data-role="page" id="boxoffice" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+			<h2>Boxoffice Movies</h2>
+			<ul class="ui-listview" data-role="listview" id="boxofficeresult" data-filter="true"></ul>
+		</div> 
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#listmovie" data-icon="search">Search Movie</a></li>
+					<li><a href="#searchbyreview" data-icon="search">Search Review</a></li>
+					<li><a href="#latest" data-icon="star" >Latest Review</a></li>
+				</ul>
+			</div>
+		</div> 
+	</div> 
+	
+	<div data-role="page" id="latest" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+			<h2>Latest Review</h2>
+			
+			<div id="result"></div>
+		</div> 
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#listmovie" data-icon="search">Search Movie</a></li>
+					<li><a href="#searchbyreview" data-icon="search">Search Review</a></li>
+					<li><a href="#latest" data-icon="star" >Latest Review</a></li>
+				</ul>
+			</div>
+		</div> 
+	</div> 
+
+
+	<div data-role="page" id="listmovie" data-theme="c"> 
+		<div data-role="header">
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content"> 
+			<h2>Movies</h2>
+			<div data-role="fieldcontain" style="text-align:center;">
+				<input type="search" style="" name="search" data-inline="true" id="search" onkeypress=""/>		<a data-role="button"  data-icon="search" data-inline="true" onclick="getmovie()" data-theme="a">Search</a>
+			</div>
+			<br/>
+			<ul class="ui-listview" data-role="listview" id="movielist"></ul> 
+		</div> 
+	</div> 
+            
+            
+	<div data-role="page" id="moviedetails" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">	   
+			<div id="mdetailresult">
+				</div>
+		</div> 		
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#addreview" data-icon="plus" data-iconpos="top">Add Review</a></li>					
+					<li><a href="#moviereview" data-icon="forward" data-iconpos="top">View Review</a></li>
+					<li><a href="#latest" data-icon="star" >Latest Review</a></li>
+				</ul>
+			</div>
+		</div> 
+	</div> 
+
+	<div data-role="page" id="moviereview" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">	   
+			<div id="mreviewresult"></div>		
+		</div> 
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#addreview" data-icon="plus" data-transition="turn">Add Review</a></li>
+					<li><a href="#latest" data-icon="star" >Latest Review</a></li>
+				</ul>
+			</div>		  
+		</div> 
+	</div> 
+
+	<div data-role="page" id="addreview" data-theme="c">           
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+			<h3 style="text-align:center;">Add Review</h3>
+			<form id="FormToValidate" action="#">
+				<div data-role="fieldcontain">
+					<label for="guestname">Enter Your Name:</label>
+					<input type="text" name="guestname" id="guestname" value="" placeholder="Name" />
+				</div>
+				<div data-role="fieldcontain">
+					<label for="textarea">Your Review:</label>
+					<textarea name="description" id="description" placeholder="Description" ></textarea>
+				</div>		 
+				<div data-role="fieldcontain">
+					<label for="rating"> Rate Movie (Out Of 5):</label>
+					<div id="precision"></div>
+					<div id="precision-target"></div>
+				</div>
+			</form>
+		</div> 
+		<div data-role="footer" data-position="fixed">		  
+			<div data-role="navbar">
+				<ul>
+					<li><a data-rel="back" data-icon="back" href="#moviereview">Cancel</a></li>
+					<li><a id="insertbtn" data-icon="add" onclick="insertReview()">Add</a></li>
+				</ul>
+			</div>			
+		</div> 
+	</div> 
+    
+      
+    <div data-role="page" id="searchbyreview" data-theme="c">           
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+			<h3 style="text-align:center;">Search By Review</h3>
+			<form id="FormToValidate" action="#">
+				<div data-role="fieldcontain">
+					<label for="guestname">Movie Name:</label>
+                    <input type="text" name="searchmoviename" id="searchmoviename"  placeholder="Movie Name:" />
+                </div>
+                <div data-role="fieldcontain">
+					<label for="guestname">Relesing Date:</label>
+					<fieldset class="ui-grid-a">
+						<div class="ui-block-a">
+							<select name="month" id="month">
+								<option value='0'>Month</option>
+								<option value='01'>January</option>
+								<option value='02'>February</option>
+								<option value='03'>March</option>
+								<option value='04'>April</option>
+								<option value='05'>May</option>
+								<option value='06'>June</option>
+								<option value='07'>July</option>
+								<option value='08'>August</option>
+								<option value='09'>September</option>
+								<option value='10'>October</option>
+								<option value='11'>November</option>
+								<option value='12'>December</option>
+							</select>
+						</div>
+						<div class="ui-block-b">
+							<input type="number" value="2012" name="year" id="year" />
+						</div>	   
+					</fieldset>
+				</div>
+				<div data-role="fieldcontain">
+					<label for="rating">Select Rating Of Movie(Out Of 5):</label>
+					From
+					<div class="ui-grid-b">
+						<div class="ui-block-a">
+							<select name="min_rating" id="min_rating" >
+								<option value='0'>0</option>
+								<option value='0.5'>0.5</option>
+								<option value='1'>1</option>
+								<option value='1.5'>1.5</option>
+								<option value='2'>2</option>
+								<option value='2.5'>2.5</option>
+								<option value='3'>3</option>
+								<option value='3.5'>3.5</option>
+								<option value='4'>4</option>
+								<option value='4.5'>4.5</option>
+								<option value='5'>5</option>
+							</select>
+						</div>
+						<div class="ui-block-b" style="font-weight: bold; line-height: 51px;text-align: center;">To</div>
+						<div class="ui-block-c">
+							<select name="max_rating" id="max_rating">
+								<option value='0'>0</option>
+								<option value='0.5'>0.5</option>
+								<option value='1'>1</option>
+								<option value='1.5'>1.5</option>
+								<option value='2'>2</option>
+								<option value='2.5'>2.5</option>
+								<option value='3'>3</option>
+								<option value='3.5'>3.5</option>
+								<option value='4'>4</option>
+								<option value='4.5'>4.5</option>
+								<option value='5'>5</option>
+							</select>							
+						</div>
+					</div>
+                    <div>					
+					</div>				
+				</div>
+			</form>
+		</div> 
+		<div data-role="footer" data-position="fixed">		  
+			<div data-role="navbar">
+				<ul>
+					<li><a data-rel="back" data-icon="back" href="#latest">Cancel</a></li>
+					<li><a id="insertbtn" data-icon="search" onclick="searchByReview()">Search</a></li>
+				</ul>
+			</div>			
+		</div> 
+	</div> 
+    
+    
+	<div data-role="page" id="filterlist" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>For Film Review</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+			<div id="filterresult"></div>
+		</div> 
+		<div data-role="footer" data-position="fixed" >
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#listmovie" data-icon="search">Search Movie</a></li>
+					<li><a data-rel="back" data-icon="search">Search Review</a></li>
+					<li><a href="#latest" data-icon="star" >Latest Review</a></li>
+				</ul>
+			</div>
+		</div> 
+	</div> 
+	
+	
+	<div data-role="page" id="about" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1>About us</h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content" class="about_content">
+		<h2>Created By:</h2>
+		
+			   <hr><h3>Bhumika Patel</h3>
+   			<p><a href="http://bhumikapatel.in/">http://bhumikapatel.in/</a></p>
+		<hr>
+			   <h3>Mayur Panchal</h3>
+   			<p><a href="http://mayur-panchal.com.nu/">http://mayur-panchal.com.nu/</a></p>
+		<hr>
+		</div> 
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a onclick="contact_suggestion('contact');" data-icon="star">Contact us</a></li>
+					<li><a onclick="contact_suggestion('suggestion');" data-icon="alert">Suggestion</a></li>
+				</ul>
+			</div>
+		</div> 
+	</div> 
+	
+	<div data-role="page" id="contact" data-theme="c"> 
+		<div data-role="header" >
+			<a data-rel="back" data-icon="back">Back</a>
+			<h1 id="displayname"></h1>
+			<div class="header_img" onclick="gohome()"><img src="img/ldpi36x36.png" /></div>
+		</div> 
+		<div data-role="content">
+			<form id="FormContact" action="#">
+				<div data-role="fieldcontain">
+					<label for="cname">Name:</label>
+					<input type="text" name="cname" id="cname" value="" placeholder="Name"  />
+				</div>	
+				<div data-role="fieldcontain">
+					<label for="cemail">Email Id:</label>
+					<input type="email" name="cemail" id="cemail" value=""  placeholder="Email" />
+				</div> 
+				<div data-role="fieldcontain">
+					<label for="textarea">Description:</label>
+					<textarea name="cdescription" id="cdescription" placeholder="Description" /></textarea>
+				</div>	
+			</form>
+		</div> 
+		<div data-role="footer" data-position="fixed">		  
+			<div data-role="navbar">
+				<ul>
+					<li><a data-rel="back" data-icon="back" href="#moviereview">Cancel</a></li>
+					<li><a id="insertcontact" data-icon="plus" onclick="insertcontact()">Add</a></li>
+				</ul>
+			</div>			
+		</div> 
+	</div>
+	<script type="text/javascript" src="js/star.js"></script>
+</body>
+</html>

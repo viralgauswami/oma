@@ -638,9 +638,12 @@ margin-top:10px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    color: #464646;
-    font-size: 20px;
-    font-weight: bold;
+/*    color: #464646;*/
+	    color:#000000;
+ /*   font-size: 20px;*/
+	 font-size: 16px;
+    /*  font-weight: bold;*/
+    font-family:"Times New Roman", Times, serif;
     margin-top: -5px;
     position: relative;
     text-transform: uppercase;
@@ -696,6 +699,7 @@ margin-top:10px;
     padding: 8px 0;
     text-align: center;
     width: 100%;
+	
 }
 .content-item .box-info .box-type .type-item .box-list .list-item .box-style span.w {
     width: 162px;

@@ -162,7 +162,8 @@
     // Called if something bad happens.
     // 
     function onFail(message) {
-      alert('Failed because: ' + message);
+     // alert('Failed because: ' + message);
+      jAlert('Failed because: ' + message,'');
     }
 	
 	
@@ -183,7 +184,8 @@
             */
             window.plugins.printPlugin.print(html,
                 function(result) {
-                    alert("Printing successful");
+                //    alert("Printing successful");
+                    jAlert('Printing successful','');
                 },
                 function(result) {
                     if (!result.available){
@@ -246,7 +248,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                      //  alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -269,7 +272,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                       // alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -507,7 +511,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                        //alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -547,17 +552,20 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                        //alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
             $("input.submit").click(function() {
                 if (!$(".object-name").val()) {
-                    alert("Please enter object name.");
+                   // alert("Please enter object name.");
+                    jAlert('error while processing ...','');
                     return false;
                 }
                 if (!$("#select-category").val()) {
-                    alert("Please select category.");
+                   // alert("Please select category.");
+                    jAlert('Please select category.','');
                     return false;
                 }
                 var selectedBox = false;
@@ -568,7 +576,8 @@
                     }
                 });
                 if (!selectedBox) {
-                    alert("Please select box / tag / bag.");
+                   // alert("Please select box / tag / bag.");
+                    jAlert('Please select box / tag / bag.','');
                     return false;
                 }
                 $.mobile.showPageLoadingMsg();
@@ -634,7 +643,8 @@
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing2 ...");
+                                        //alert("error while processing2 ...");
+                                        jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );
@@ -671,7 +681,8 @@
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing3 ...");
+                                       // alert("error while processing3 ...");
+                                        jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );
@@ -689,7 +700,8 @@
                     },
                     error: function (err) {
 						$.mobile.hidePageLoadingMsg();
-                        alert("error while processing1 ...");
+                        //alert("error while processing1 ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -826,7 +838,8 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    alert("error while processing ...");
+                  //  alert("error while processing ...");
+                    jAlert('error while processing ...','');
                 }
             });
         });
