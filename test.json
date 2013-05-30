@@ -1,0 +1,11 @@
+{
+item_to_vendor: {
+auth: true,
+date: "05 / 30 / 13",
+account: "Hi Admin",
+jobname: "job1",
+bags: "null",
+boxs: "["1-BOX-ROOM 1-1","1-BOX-ROOM 2-2","1-BOX-ROOM 6-9","1-BOX-LOBBY-64","1-BOX-LOBBY-65","1-BOX-ROOM 2-158","1-BOX-office 226-193"]",
+tags: "["1-LARGE-ROOM 1-3","1-LARGE-ROOM 2-4","1-LARGE-ROOM 6-6","1-LARGE-ROOM 3-7","1-LARGE-ROOM 1-8","1-LARGE-CLOSET 1-83","1-LARGE-LOBBY-66","1-LARGE-LOBBY-67","1-LARGE-LOBBY-68","1-LARGE-LOBBY-93"]"
+}
+}

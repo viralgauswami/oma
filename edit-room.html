@@ -1,188 +1,13 @@
 <!DOCTYPE html> 
 <html> 
     <head> 
-    <title>Job Setup Page</title> 
+    <title>Edit Room Page</title> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/jquery.mobile-1.0.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
-    
-    <script src="jquery_002.js" type="text/javascript"></script>
-	<script src="jquery_003.js" type="text/javascript"></script>
-	<script src="jquery.js" type="text/javascript"></script>
-	<link href="jquery.css" rel="stylesheet" type="text/css" media="screen">
-	
-     <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js";></script>
-      <script type="text/javascript" charset="utf-8" src="phonegap.js";></script>
-      <script type="text/javascript" charset="utf-8">
-   
-    var pictureSource;   // picture source
-		var destinationType; // sets the format of returned value 
-		
-		var ar1="";
-		var ar2="";
-		var setimg="";
-		var setimg2="";
-		var room_photo="";
-		var fruits = [];
-		
-		
-    // Wait for Cordova to connect with the device
-    //
-    document.addEventListener("deviceready",onDeviceReady,false);
-
-    // Cordova is ready to be used!
-    //
-    function onDeviceReady() {
-        pictureSource=navigator.camera.PictureSourceType;
-        destinationType=navigator.camera.DestinationType;
-    }
-
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoDataSuccess(imageData) {
-	alert(imageData);
-      // Uncomment to view the base64 encoded image data
-      // console.log(imageData);
-
-      // Get image handle
-	  
-	
-		
-				
-                    
-      //
-      var smallImage = document.getElementById('smallImage');
-		
-		  // 	 alert(myimage);
-		  
-      // Unhide image elements
-      //
-      smallImage.style.display = 'block';
-
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-    
-
-	
-alert(imageData);
-
-
-	
-	  smallImage.src = "data:image/jpeg;base64," + imageData;
-	  
-      //document.getElementById('smallImage').getAttribute('src') == "images/logo.png";
-	  
-	 
-	   
-         
-		  if(ar1!="")
-		  {
-			ar2=ar2+","+ar1;  
-			
-			room_photo=fruits.push(ar2);
-		  }
-		  else
-		  {
-			  ar1=imageData;
-			 room_photo=fruits.push(ar1);
-			  
-		  }
-		  if(ar2=="")
-		  {
-				ar2=ar1;
-		  }
-		  
-		  if(setimg!="")
-		  {
-			 setimg2=setimg2+","+setimg;
-			 
-		
-						
-							 document.getElementById('boldStuff').innerHTML = setimg2;
-
-		  }
-		  else
-		  {
-			  
-			
-						
-			setimg ='<div class="image-item"><img style="width:70px;height:70px;" class="image-item" id="smallImage" src="data:image/jpeg;base64,'+ imageData +'" /><span class="del"></span></div>';  
-		  	document.getElementById('boldStuff').innerHTML = setimg;
-		  }
-
-
-			 			
-		
-    }
-
-
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI 
-      // console.log(imageURI);
-
-      // Get image handle
-      //
-      var largeImage = document.getElementById('largeImage');
-
-      // Unhide image elements
-      //
-      largeImage.style.display = 'block';
-
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-      largeImage.src = imageURI;
-    }
-
-    // A button will call this function
-    //
-	
-	
-    function capturePhoto() {
-	alret(1);
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture( onPhotoDataSuccess , onFail, { quality: 50,
-        destinationType: destinationType.DATA_URL });
-		
-		
-            
-    }
-	
-
-    // A button will call this function
-    //
-    function capturePhotoEdit() {
-      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string  
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
-        destinationType: destinationType.DATA_URL });
-    }
-
-    // A button will call this function
-    //
-    function getPhoto(source) {
-	
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
-        destinationType: destinationType.FILE_URI,
-        sourceType: source });
-    }
-
-    // Called if something bad happens.
-    // 
-    function onFail(message) {
-      alert('Failed because: ' + message);
-    }
-	
-	
-		
-	 </script>
-
-  <!--  <script src="js/phonegap-1.1.0.js"></script>-->
+    <script src="js/phonegap-1.1.0.js"></script>
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/jquery.mobile-1.0.min.js"></script>
@@ -201,9 +26,7 @@ alert(imageData);
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                     //   alert("error while processing ...");
-                        jAlert('Your Session has expired,pleass Login.','');
-					window.location.href = "login.html";
+                        alert("error while processing ...");
                     }
                 });
             });
@@ -212,120 +35,101 @@ alert(imageData);
                     window.location.href = $(this).attr("rel");
                 }
             });
-            $(".close").click(function() {
-                navigator.notification.confirm(
-                    'Are you sure you want to close this job?', 
-                    function(button) {
-                        switch (button) {
-                            case 1:
-                                $.mobile.showPageLoadingMsg();
-                                $.ajax({
-                                    type: "POST",
-                                    url: config.service.baseurl + "/job/close",
-                                    data: {},
-                                    dataType: "json",
-                                    success: function(rsp) {
-                                        $.mobile.hidePageLoadingMsg();
-                                        if (!rsp.auth) {
-                                            window.location.href = "login.html";
-                                            return;
-                                        }
-                                        window.location.href = rsp.redirect;
-                                    },
-                                    error: function(err) {
-                                        $.mobile.hidePageLoadingMsg();
-                                      //  alert("error while processing ...");
-                                        jAlert('error while processing ...','');
-                                    }
-                                });
-                            break;
+         $(".close").click(function() {
+             	jConfirm('Are you sure you want to close this job?', 'Confirmation Dialog', function(r) {
+					if(r==true)
+					{
+						    $.mobile.showPageLoadingMsg();
+            			    $.ajax({
+                    type: "POST",
+                    url: config.service.baseurl + "/job/close",
+                    data: {},
+                    dataType: "json",
+                    success: function(rsp) {
+						$.mobile.hidePageLoadingMsg();
+                        if (!rsp.auth) {
+                            window.location.href = "login.html";
+                            return;
                         }
-                    }, 
-                    $(".job-name").html(), 
-                    "OK, Cancel"
-                );
-			
-                      
-                                $.mobile.showPageLoadingMsg();
-                                $.ajax({
-                                    type: "POST",
-                                    url: config.service.baseurl + "/job/close",
-                                    data: {},
-                                    dataType: "json",
-                                    success: function(rsp) {
-                                        $.mobile.hidePageLoadingMsg();
-                                        if (!rsp.auth) {
-                                            window.location.href = "index.html";
-                                            return;
-                                        }
-                                        window.location.href = rsp.redirect;
-                                    },
-                                    error: function(err) {
-                                        $.mobile.hidePageLoadingMsg();
-                                        //alert("error while processing ...");
-                                        jAlert('error while processing ...','');
-                                    }
-                                });
-                  
-                      
-				/*window.location.href = "index.html";*/
-            });            
-            $("#add-room").change(function() {
-                if (!$(this).val())
-                    return false;
-                var roomItem = $(".room-item.template").clone().removeClass("template");
-                if ($(this).val() == "_") {
-                    roomItem.find("div.room-name").remove();
-                }
-                else {
-                    roomItem.find("input.room-name").remove();
-                    roomItem.find("div.room-name").html($(this).val());
-                }
-                $(".room-list").append(roomItem);
+                        window.location.href = rsp.redirect;
+                    },
+                    error: function(err) {
+                        $.mobile.hidePageLoadingMsg();
+                     //   alert("error while processing ...");
+                        jAlert('error while processing ...','');
+                    }
+                });
+					}
+					else
+					{
+							return false;	
+					}
+					});
             });
-          //  $(".add-image").live("click", function() {
-//                var _this = this;
-//                var options = {
-//                    quality: 100,
-//                    destinationType: navigator.camera.DestinationType.FILE_URI
-//             
-//                };
-//                
-//                navigator.camera.getPicture(
-//                    function (uri) {
-//                    	var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /><span class='del'></span></div>");
-//                        $(_this).parent().prepend(imageItem);
-//                        $(imageItem).children("img").attr('src', uri);
-//                    },
-//                    function() {},
-//                    options
-//                );
-//            });
-            $(".image-item span.del").live("click", function() {
-                $(this).parent().remove();
+            $("input.cancel").click(function() {
+                window.location.href = "rooms.html";
+            });
+            $("span.del").live("click", function() {
+                if (!confirm("Are you sure you want to delete the photo?"))
+                    return;
+                var _this = this;
+                $.mobile.showPageLoadingMsg();
+                $.ajax({
+                    type: "POST",
+                    url: config.service.baseurl + "/room/delete-photo",
+                    data: {
+                        imageid: $(_this).prev().attr("id")
+                    },
+                    dataType: "json",
+                    success: function(rsp) {
+						$.mobile.hidePageLoadingMsg();
+                        if (!rsp.auth) {
+                            window.location.href = "login.html";
+                            return;
+                        }
+                        $(_this).parent().remove();
+                    },
+                    error: function(err) {
+                        $.mobile.hidePageLoadingMsg();
+                        alert("error while processing ...");
+                    }
+                });
+            });
+            $(".add-image").live("click", function() {
+                var _this = this;
+                var options = {
+                    quality: 100,
+                    destinationType: navigator.camera.DestinationType.FILE_URI
+                    /*sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY*/
+                };
+                
+                navigator.camera.getPicture(
+                    function (uri) {
+                        var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /></div>");
+                        $(imageItem).find("img").attr('src', uri);
+                        $(_this).parent().prepend(imageItem);
+                    },
+                    function() {},
+                    options
+                );
             });
             $(".save").live("click", function() {
                 $.mobile.showPageLoadingMsg();
                 
-            	var roomItem = $(this).parents(".room-item");
+                var roomItem = $(this).parents(".room-item");
 
-                var roomName = 
-                    $(roomItem).find(".room-name").get(0).tagName.toUpperCase() == "INPUT" ? 
-                        $(roomItem).find(".room-name").val() :
-                        $(roomItem).find(".room-name").html();
+                var roomName = $(roomItem).find(".room-name").val();
 
                 if (roomName == "") {
                     $.mobile.hidePageLoadingMsg();
-                 //   alert("Please enter the room name.");
-                    jAlert('error while processing ...','');
+                    alert("Please enter the room name.");
                     return false;
                 }
                 $.ajax({
                     type: "POST",
-                    url: config.service.baseurl + "/room/add",
+                    url: config.service.baseurl + "/room/update",
                     data: {
-                        name: roomName,
-						room_photo: fruits
+                        name: roomName
                     },
                     dataType: "json",
                     success: function(rsp) {
@@ -335,11 +139,10 @@ alert(imageData);
                             return;
                         }
                         if (!rsp.process == "failure") {
-                           // alert("The room name has been duplicated. Please enter new room name.");
-                            jAlert('The room name has been duplicated. Please enter new room name.','');
+                            alert("The room name has been duplicated. Please enter new room name.");
                             return;
                         }
-                      /*  if ($(roomItem).find(".image-item").size() > 0) {
+                        if ($(roomItem).find(".image-item").size() > 0) {
                             var options = new FileUploadOptions();
                             options.fileKey = "image";
                             options.mimeType = "image/jpeg";
@@ -347,6 +150,13 @@ alert(imageData);
                             params.roomid = rsp.roomid;
                             options.params = params;
                             $(roomItem).find(".image-item").each(function(i) {
+                                if ($(this).find('img').attr("id")) {
+                                    if (i == ($(roomItem).find(".image-item").size() - 1)) {
+                                        window.location.href = "rooms.html";
+                                        return;
+                                    }
+                                    return;
+                                }
                                 var ft = new FileTransfer();
 								$.mobile.showPageLoadingMsg();
                                 ft.upload(
@@ -356,20 +166,12 @@ alert(imageData);
 										$.mobile.hidePageLoadingMsg();
                                         //console.log("success"); 
                                         if (i == ($(roomItem).find(".image-item").size() - 1)) {
-                                            $(roomItem).slideUp("fast", function() {
-                                                $(this).remove();
-                                                $("#add-room option").each(function(j) {
-                                                    if ($(this).attr("value") == roomName) {
-                                                        $(this).remove();
-                                                    }
-                                                });
-                                            });
+                                            window.location.href = "rooms.html";
                                         }
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                       // alert("error while processing ...");
-                                        jAlert('error while processing ...','');
+                                        alert("error while processing ...");
                                     }, 
                                     options
                                 );
@@ -377,26 +179,20 @@ alert(imageData);
                         }
                         else {
                             $(roomItem).slideUp("fast", function() {
-                                $(this).remove();
-                                $("#add-room option").each(function(j) {
-                                    if ($(this).attr("value") == roomName) {
-                                        $(this).remove();
-                                    }
-                                });
+                                window.location.href = "rooms.html";
                             });
-                        }*/
+                        }
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                       // alert("error while processing ...");
-                        jAlert('error while processing ...','');
+                        alert("error while processing ...");
                     }
                 });
             });
             $.mobile.showPageLoadingMsg();
             $.ajax({
                 type: "POST",
-                url: config.service.baseurl + "/job/setup",
+                url: config.service.baseurl + "/room/view",
                 data: {},
                 dataType: "json",
                 success: function(rsp) {
@@ -407,21 +203,21 @@ alert(imageData);
                     }
                     $(".header .account").html(rsp.date + "<BR>" + rsp.account);
                     $(".job-name").html(rsp.jobname);
-                    $(rsp.rooms).each(function(i) {
-                        $("#add-room").append("<option value='" + this.name + "'>" + this.name + "</option>");
+                    $(".room-name").val(rsp.room.name);
+                    $(rsp.room.images).each(function(i) {
+                        var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /><span class='del'></span></div>");
+                        $(imageItem).find("img").attr("src", config.site.baseurl + this.thumb).attr("id", this.id);
+                        $(".room-item .image").prepend(imageItem);
                     });
-                    $("#add-room").append("<option value='_'>Add Room</option>");
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                  //  alert("error while processing ...");
-                    jAlert('error while processing ...','');
+                    alert("error while processing ...");
                 }
             });
         });
         
     </script>
-          
 </head>
 <body>
 <div class="logo"><a><img src="images/logo.png" width="110" /></a></div>
@@ -443,49 +239,29 @@ alert(imageData);
                 <div class="clear"></div>
             </div>
             <div class="menu">
-                <div class="item active"><a class="setup" rel="job-setup.html">setup</a></div>
-                <div class="item"><a class="rooms" rel="rooms.html">rooms</a></div>
+                <div class="item"><a class="setup" rel="job-setup.html">setup</a></div>
+                <div class="item active"><a class="rooms" rel="rooms.html">rooms</a></div>
                 <div class="item"><a class="contents" rel="contents.html">contents</a></div>
                 <div class="item"><a class="on-truct" rel="on-truck.html">on truck</a></div>
                 <div class="item last"><a class="pack-back" rel="pack-back.html">pack back</a></div>
                 <div class="clear"></div>
             </div>
-            <div class="select room">
-                <select name="add-room" id="add-room" data-icon="arrow-r" data-iconpos="right">
-                    <option value="">Add Room</option>
-                   
-                </select>
-            </div>
+            <div class="select room"></div>
             <div class="room-list">
-                <div class="room-item template">
+                <div class="room-item">
                     <div class="name">
                         <input type="text" placeholder="&lt;enter room name&gt;" class="room-name" />
-                        <div class="room-name">Master Bedroom</div>
-                        <input type="button" class="save" value="save" data-inline="true" data-shadow="false" />
+                        <input type="button" class="save" value="update" data-inline="true" data-shadow="false" />
+                        <input type="button" class="cancel" value="cancel" data-inline="true" data-shadow="false" />
                     </div>
-                 <div class="image">
-                     
-                    <div class="items">
-                    <!--    <div class="image-item">
+                    <div class="image">
+                        <!--<div class="image-item">
                             <img src="" />
                         </div>-->
-                        <a ><img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" /></a>
-                        <a class="add-image" onclick="capturePhoto();"><img src="images/add_image.png" /></a>
-                     
-                        <!--    <a onclick="capturePhoto();"><img src="images/add_image.png" /></a>-->
-                            </div>
-                    </div>  
-                  
-                    <div class="image">
-                     
-                    <!--  	<img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" />
-                     <span id='boldStuff'></span>
-                        <a  onclick="capturePhoto();"><img src="images/add_image.png" /></a>-->
+                        <a class="add-image"><img src="images/add_image.png" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
-                
-                
             </div>
         </div>
         

@@ -8,15 +8,199 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.0.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/colorbox.css" />
+  
+     <!--Css For Modal -->
+    <style>
+body {
+font-family:verdana;
+font-size:15px;
+}
+
+a {color:#333; text-decoration:none}
+a:hover {color:#ccc; text-decoration:none}
+
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+  
+#boxes .window {
+  position:fixed;
+  left:0;
+  top:0;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+
+#boxes #dialog {
+  width:375px; 
+  height:203px;
+  padding:10px;
+  background-color:#ffffff;
+}
+
+#boxes #dialog1 {
+  width:375px; 
+  height:203px;
+}
+
+#dialog1 .d-header {
+  background:url(images/login-header.png) no-repeat 0 0 transparent; 
+  width:375px; 
+  height:150px;
+}
+
+#dialog1 .d-header input {
+  position:relative;
+  top:60px;
+  left:100px;
+  border:3px solid #cccccc;
+  height:22px;
+  width:200px;
+  font-size:15px;
+  padding:5px;
+  margin-top:4px;
+}
+
+#dialog1 .d-blank {
+  float:left;
+  background:url(images/login-blank.png) no-repeat 0 0 transparent; 
+  width:267px; 
+  height:53px;
+}
+
+#dialog1 .d-login {
+  float:left;
+  width:108px; 
+  height:53px;
+}
+
+#boxes #dialog2 {
+  background:url(images/notice.png) no-repeat 0 0 transparent; 
+  width:326px; 
+  height:229px;
+  padding:50px 0 20px 25px;
+}
+</style>
+  
     
     <script src="jquery_002.js" type="text/javascript"></script>
 	<script src="jquery_003.js" type="text/javascript"></script>
 	<script src="jquery.js" type="text/javascript"></script>
 	<link href="jquery.css" rel="stylesheet" type="text/css" media="screen">
     
-      <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js";></script>
-      <script type="text/javascript" charset="utf-8" src="phonegap.js";></script>
-      <script type="text/javascript" charset="utf-8">
+     <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script> <!--Modal Js -->
+   <!--   <script type="text/javascript" charset="utf-8" src="phonegap.js"></script> -->
+      
+	  <script>  <!--Modal JS -->	 
+	 $(document).ready(function() {	
+
+	//select all the a tag with name equal to modal
+	$('a[name=modal]').click(function(e) {
+		//Cancel the link behavior
+		e.preventDefault();
+		
+		//Get the A tag
+		var id = $(this).attr('href');
+	
+		//Get the screen height and width
+		var maskHeight = $(document).height();
+		var maskWidth = $(window).width();
+	
+		//Set heigth and width to mask to fill up the whole screen
+		$('#mask').css({'width':maskWidth,'height':maskHeight});
+		
+		//transition effect		
+		$('#mask').fadeIn(1000);	
+		$('#mask').fadeTo("slow",0.8);	
+	
+		//Get the window height and width
+		var winH = $(window).height();
+		var winW = $(window).width();
+              
+		//Set the popup window to center
+		$(id).css('top',  winH/2-$(id).height()/2);
+		$(id).css('left', winW/2-$(id).width()/2);
+	
+		//transition effect
+		$(id).fadeIn(2000); 
+	
+	});
+	
+	//if close button is clicked & Add Category With Ajax Call
+	$('.window .close1').click(function (e) {
+		//Cancel the link behavior
+		e.preventDefault();
+		$('#mask').hide();
+		$('.window').hide();
+
+
+		// add category
+
+	$.mobile.showPageLoadingMsg();
+                $.ajax({
+                    type: "POST",
+                    url: config.service.baseurl + "/content/addcategory",
+					data: {
+                        obj_name: $("#txt_categoryname").val(),
+						obj_is_active:1
+                    },
+                    dataType: "json",
+                    success: function(rsp) {
+						$.mobile.hidePageLoadingMsg();
+ 							$(".room-info .add-item").click();
+                   			jAlert("New Category Added",'');
+                    },
+                    error: function(err) {
+                        $.mobile.hidePageLoadingMsg();
+                     //   alert("error while processing ...");
+                        jAlert('error while processing ...','');
+                    }
+                });
+
+	});		
+	
+	//if mask is clicked
+	$('#mask').click(function () {
+		$(this).hide();
+		$('.window').hide();
+	});			
+
+	$(window).resize(function () {
+	 
+ 		var box = $('#boxes .window');
+ 
+        //Get the screen height and width
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+      
+        //Set height and width to mask to fill up the whole screen
+        $('#mask').css({'width':maskWidth,'height':maskHeight});
+               
+        //Get the window height and width
+        var winH = $(window).height();
+        var winW = $(window).width();
+
+        //Set the popup window to center
+        box.css('top',  winH/2 - box.height()/2);
+        box.css('left', winW/2 - box.width()/2);
+	 
+	});
+	
+});
+</script>
+
+	  
+	  
+	  <script type="text/javascript" charset="utf-8">
    
     var pictureSource;   // picture source
 		var destinationType; // sets the format of returned value 
@@ -175,33 +359,7 @@
     <script src="js/jquery.mobile-1.0.min.js"></script>
     <script src="js/jquery.colorbox.min.js"></script>
     <script type="text/javascript">
-        function print(html) {
-            //Get HTML string
-            //alert(html);
-            
-            /*
-            Pass a DOM node (or HTML string) and - optionally - success function, error function, position of print dialog (iPad only).
-            */
-            window.plugins.printPlugin.print(html,
-                function(result) {
-                //    alert("Printing successful");
-                    jAlert('Printing successful','');
-                },
-                function(result) {
-                    if (!result.available){
-                        //alert("Printing is not available");
-                    }
-                    else{
-                        //Localised error description
-                        //alert(result.error);
-                    }
-                }
-                
-                //Add the following on an iPad to position the dialog
-                ,
-                {dialogOffset: {left: 500, top: 900}}
-            );
-        }
+      
         $(document).ready(function() {
             $("a.logoff").click(function() {
                 $.mobile.showPageLoadingMsg();
@@ -229,11 +387,13 @@
                     window.location.href = $(this).attr("rel");
                 }
             });
-            $(".close").click(function() {
-                if (!confirm("Are you sure you want to close this job?"))
-                    return false;
-                $.mobile.showPageLoadingMsg();
-                $.ajax({
+
+ $(".close").click(function() {
+             	jConfirm('Are you sure you want to close this job?', 'Confirmation Dialog', function(r) {
+					if(r==true)
+					{
+						    $.mobile.showPageLoadingMsg();
+            			    $.ajax({
                     type: "POST",
                     url: config.service.baseurl + "/job/close",
                     data: {},
@@ -248,11 +408,18 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                      //  alert("error while processing ...");
+                     //   alert("error while processing ...");
                         jAlert('error while processing ...','');
                     }
                 });
+					}
+					else
+					{
+							return false;	
+					}
+					});
             });
+
             $(".viewitems").click(function() {
                 $.mobile.showPageLoadingMsg();
                 $.ajax({
@@ -361,10 +528,12 @@
                 if (!$(this).next().size()) {
                     var _this = this;
                     $(".box-info .box-type").delay(500).slideUp("fast", function() {
-                        //$("#print_result .jobid").html("&lt;Job #" + $(".contentid").attr("jobid") + "&gt;");
-                        $("#print_result .jobname").html("&lt;" + $(".job-title .job-name").html() + "&gt;");
+						//Lable by mayur
+						
+                        $("#print_result .jobid").html($(".contentid").attr("jobid"));
+                        $("#print_result .jobname").html($(".job-title .job-name").html());
                         $("#print_result .roomname").html($("#select-room option:selected").text());
-                        $("#print_result .contentid").html("<small>#</small>" + $(".contentid").attr("contentid"));
+                        $("#print_result .contentid").html($(".contentid").attr("contentid"));
                         switch ($(_this).attr("type")) {
                             case "box":
                                 $(".item-locate .box-type").html("box");
@@ -478,7 +647,7 @@
                 
                 navigator.camera.getPicture(
                     function (uri) {
-                        var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /></div>");
+                        var imageItem = $("<div class='image-item'><img src='' class='image-item' width='70' height='70' /></div>");
                         $(imageItem).find("img").attr('src', uri);
                         $(_this).parent().prepend(imageItem);
                     },
@@ -558,6 +727,7 @@
                 });
             });
             $("input.submit").click(function() {
+				
                 if (!$(".object-name").val()) {
                    // alert("Please enter object name.");
                     jAlert('error while processing ...','');
@@ -581,9 +751,23 @@
                     return false;
                 }
                 $.mobile.showPageLoadingMsg();
-                $.ajax({
+          		var url1="";
+			
+				if($("input.submit").val() == "submit")
+				{
+				
+					url1="/content/submit";
+				}
+				else
+				{
+					
+					url1="/content/update";
+					
+				}
+		  
+			    $.ajax({
                     type: "POST",
-                    url: config.service.baseurl + ($("input.submit").val() == "submit" ? "/content/submit" : "/content/update"),
+                    url: config.service.baseurl + url1,
                     data: {
                         roomid: $("#select-room").val(),
                         contentid: $(".contentid").attr("contentid"),
@@ -600,103 +784,23 @@
                     },
                     dataType: "json",
                     success: function (rsp) {
+					
 						$.mobile.hidePageLoadingMsg();
-                        if (!rsp.auth) {
+                        if (!rsp.auth) { 
                             window.location.href = "login.html";
                             return;
                         }
-                        var options = new FileUploadOptions();
-                        options.fileKey = "image";
-                        options.mimeType = "image/jpeg";
-                        var params = new Object();
-                        params.contentid = rsp.contentid;
-                        $(".item-info .items .image-item").each(function(i) {
-                            if ($(this).find('img').attr("id")) {
-                                $(this).remove();
-                            }
-                        });
-                        if ($(".item-info .items .image-item").size() > 0) {
-                            params.phototype = "base";
-                            options.params = params;
-                            $(".item-info .items .image-item").each(function(i) {
-                                var ft = new FileTransfer();
-								$.mobile.showPageLoadingMsg();
-                                ft.upload(
-                                    $(this).find("img").attr('src'), 
-                                    config.service.baseurl + "/content/upload-photo", 
-                                    function(r) {
-										$.mobile.hidePageLoadingMsg();
-                                        if (i == ($(".item-info .items .image-item").size() - 1)) {
-                                            $(".item-info .items .image-item").slideUp("fast", function() {
-                                                $(this).remove();
-                                                if ($("#damage-state").val() != "damaged" || $(".damage-info .items .image-item").size() == 0) {
-                                                    if ($("input.submit").val() == "submit") {
-                                                        initContentInfo();
-                                                        $(".content-item").hide();
-                                                    }
-                                                    else {
-                                                        window.location.href = "view-contents.html";
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    }, 
-                                    function() {
-                                        $.mobile.hidePageLoadingMsg();
-                                        //alert("error while processing2 ...");
-                                        jAlert('error while processing ...','');
-                                    }, 
-                                    options
-                                );
-                            });
-                        }
-                        $(".damage-info .items .image-item").each(function(i) {
-                            if ($(this).find('img').attr("id")) {
-                                $(this).remove();
-                            }
-                        });
-                        if ($("#damage-state").val() == "damaged" && $(".damage-info .items .image-item").size() > 0) {
-                            params.phototype = "damage";
-                            options.params = params;
-                            $(".damage-info .items .image-item").each(function(i) {
-                                var ft = new FileTransfer();
-								$.mobile.showPageLoadingMsg();
-                                ft.upload(
-                                    $(this).find("img").attr('src'), 
-                                    config.service.baseurl + "/content/upload-photo", 
-                                    function(r) {
-										$.mobile.hidePageLoadingMsg();
-                                        if (i == ($(".damage-info .items .image-item").size() - 1)) {
-                                            $(".damage-info .items .image-item").slideUp("fast", function() {
-                                                if ($("input.submit").val() == "submit") {
-                                                    $(this).remove();
-                                                    initContentInfo();
-                                                    $(".content-item").hide();
-                                                }
-                                                else {
-                                                    window.location.href = "view-contents.html";
-                                                }
-                                            });
-                                        }
-                                    }, 
-                                    function() {
-                                        $.mobile.hidePageLoadingMsg();
-                                       // alert("error while processing3 ...");
-                                        jAlert('error while processing ...','');
-                                    }, 
-                                    options
-                                );
-                            });
-                        }
-                        if ($(".item-info .items .image-item").size() == 0 && ($("#damage-state").val() != "damaged" || $(".damage-info .items .image-item").size() == 0)) {
-                            if ($("input.submit").val() == "submit") {
-                                initContentInfo();
-                                $(".content-item").hide();
-                            }
-                            else {
-                                window.location.href = "view-contents.html";
-                            }
-                        }
+		        	jConfirm('SEND TO VENDOR ?', 'Confirmation Dialog', function(r) {
+					if(r==false)
+					{
+						  window.location.href = "contents.html";
+					}
+					else
+					{
+						  window.location.href = "vendor_list.html";
+					}
+					});
+
                     },
                     error: function (err) {
 						$.mobile.hidePageLoadingMsg();
@@ -892,21 +996,22 @@
                         <input type="text" placeholder="&lt;enter description&gt;" class="object-desc" />
                     </div>
                     <div class="photo-sec">
+                      <a href="#dialog2" name="modal">Add Category</a>
                         <div class="select category">
                             <select name="select-category" id="select-category" data-icon="arrow-r" data-iconpos="right">
                                 <option value="">Category</option>
                             </select>
                         </div>
                         <div class="image">
-                            <div class="items">
+                            <div class="items image-item">
                             <img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" />
-                            <a    onclick="capturePhoto();"><img src="images/add_image.png" /></a>
+                            <a  onclick="capturePhoto();"><img src="images/add_image.png" /></a>
                             
                     <!--        <a class="add-image"><img src="images/add_image.png" /></a>-->
                             
                             </div>
                             <div class="image-item template hidden">
-                                <img src="" width="70" height="70" />
+                                <img src="" width="70" class="image-item" height="70" />
                                 <span class="del"></span>
                             </div>
                             <div class="clear"></div>
@@ -930,7 +1035,7 @@
                     </div>
                     <div class="photo-sec hidden">
                         <div class="image">
-                            <div class="items">
+                            <div class="items image-item">
                             
                             <img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage2" src="" />
                             <a  onclick="capturePhoto2();"><img src="images/add_image.png" /></a>
@@ -947,7 +1052,7 @@
                             
                             </div>
                             <div class="image-item template hidden">
-                                <img src="" width="70" height="70" />
+                                <img src="" class="image-item" width="70" height="70" />
                                 <span class="del"></span>
                             </div>                            
                         </div>
@@ -1056,5 +1161,22 @@
         <div class="clear"></div>
     </div>
 </div>
+
+<!-- Start of Sticky Note -->
+<div id="boxes">
+
+<div id="dialog2" class="window">
+Category Name : <input type="text" id="txt_categoryname" />
+ <br/>
+<input type="button" value="Add Category" class="close1"/>
+</div>
+<!-- End of Sticky Note -->
+
+
+
+<!-- Mask to cover the whole screen -->
+  <div id="mask"></div>
+</div>
+
 </body>
 </html>

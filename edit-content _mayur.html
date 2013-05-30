@@ -1,14 +1,15 @@
 <!DOCTYPE html> 
 <html> 
     <head> 
-    <title>Contents Page</title> 
+    <title>Edit Content Page</title> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/jquery.mobile-1.0.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/colorbox.css" />
-    <!--Css For Modal -->
+  
+     <!--Css For Modal -->
     <style>
 body {
 font-family:verdana;
@@ -88,27 +89,25 @@ a:hover {color:#ccc; text-decoration:none}
   padding:50px 0 20px 25px;
 }
 </style>
+  
     
-     <script src="jquery_002.js" type="text/javascript"></script>
+    <script src="jquery_002.js" type="text/javascript"></script>
 	<script src="jquery_003.js" type="text/javascript"></script>
 	<script src="jquery.js" type="text/javascript"></script>
 	<link href="jquery.css" rel="stylesheet" type="text/css" media="screen">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script> <!--Modal Js -->
-    <script type="text/javascript" charset="utf-8" src=""></script>
-   <!-- <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-     --> 
-       <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
-	    <script type="text/javascript" charset="utf-8" src="PrintPlugin.js"></script>
-    <script src="js/jquery-1.7.1.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/jquery.mobile-1.0.min.js"></script>
-    <script src="js/jquery.colorbox.min.js"></script> 
-<script>  <!--Modal JS -->	 
+    
+     <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script> <!--Modal Js -->
+   <!--   <script type="text/javascript" charset="utf-8" src="phonegap.js"></script> -->
+      
+	  <script>  <!--Modal JS -->	 
 	 $(document).ready(function() {	
+
 	//select all the a tag with name equal to modal
 	$('a[name=modal]').click(function(e) {
 		//Cancel the link behavior
 		e.preventDefault();
+		
 		//Get the A tag
 		var id = $(this).attr('href');
 	
@@ -199,9 +198,9 @@ a:hover {color:#ccc; text-decoration:none}
 });
 </script>
 
-	 
-	 
-	 <script type="text/javascript" charset="utf-8">
+	  
+	  
+	  <script type="text/javascript" charset="utf-8">
    
     var pictureSource;   // picture source
 		var destinationType; // sets the format of returned value 
@@ -225,8 +224,10 @@ a:hover {color:#ccc; text-decoration:none}
     function onPhotoDataSuccess(imageData) {
       // Uncomment to view the base64 encoded image data
       // console.log(imageData);
+
       // Get image handle
-       var smallImage = document.getElementById('smallImage');
+      //
+      var smallImage = document.getElementById('smallImage');
 		   myimage = imageData;
 		  // 	 alert(myimage);
 		  
@@ -240,6 +241,10 @@ a:hover {color:#ccc; text-decoration:none}
       smallImage.src = "data:image/jpeg;base64," + imageData;
 	  
       //document.getElementById('smallImage').getAttribute('src') == "images/logo.png";
+
+               
+	  
+		
     }
 	 function onPhotoDataSuccess2(imageData) {
       // Uncomment to view the base64 encoded image data
@@ -302,20 +307,18 @@ a:hover {color:#ccc; text-decoration:none}
 
     // A button will call this function
     //
-	   function capturePhoto() {
-       // alert('capturePhoto');
+	
+	
+    function capturePhoto() {
       // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture( onPhotoDataSuccess , onFail, { quality: 50,
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
         destinationType: destinationType.DATA_URL });
-		
-		}
-	
-	
+    }
 	function capturePhoto2() {
       // Take picture using device camera and retrieve image as base64-encoded string
       navigator.camera.getPicture(onPhotoDataSuccess2, onFail, { quality: 50,
         destinationType: destinationType.DATA_URL });
-    } 	
+    }
 	function capturePhoto3() {
       // Take picture using device camera and retrieve image as base64-encoded string
       navigator.camera.getPicture(onPhotoDataSuccess3, onFail, { quality: 50,
@@ -344,72 +347,20 @@ a:hover {color:#ccc; text-decoration:none}
     // 
     function onFail(message) {
      // alert('Failed because: ' + message);
-      jAlert('Failed because:' + message,'');
+      jAlert('Failed because: ' + message,'');
     }
 	
 	
 		
 	 </script>
-  
- <!--   <script src="js/phonegap-1.1.0.js"></script>-->
-	
-      
-    
-
-  
+   <!-- <script src="js/phonegap-1.1.0.js"></script>-->
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/jquery.mobile-1.0.min.js"></script>
+    <script src="js/jquery.colorbox.min.js"></script>
     <script type="text/javascript">
-
-	
-	
-	
-        function getParams() {
-            var idx = document.URL.indexOf('?');
-            if (idx != -1) {
-                var tempParams = new Object();
-                var pairs = document.URL.substring(idx+1,document.URL.length).split('&');
-                for (var i=0; i<pairs.length; i++) {
-                    nameVal = pairs[i].split('=');
-                    tempParams[nameVal[0]] = nameVal[1];
-                }
-                return tempParams;
-            }
-        }
-        var params = getParams();
-        function print(html) {
-            //Get HTML string
-            //alert(html);
-            
-            /*
-            Pass a DOM node (or HTML string) and - optionally - success function, error function, position of print dialog (iPad only).
-            */
-            window.plugins.printPlugin.print(html,
-                function(result) {
-                    //alert("Printing successful");
-                    jAlert('Printing successful','');
-                },
-                function(result) {
-                    if (!result.available){
-                        //alert("Printing is not available");
-                    }
-                    else{
-                        //Localised error description
-                        //alert(result.error);
-                    }
-                }
-                
-                //Add the following on an iPad to position the dialog
-                ,
-                {dialogOffset: {left: 500, top: 900}}
-            );
-        }
+      
         $(document).ready(function() {
-            /*window.plugins.printPlugin.isPrintingAvailable(
-                function(result){
-                    alert(result.available ? "Printing is available" : "Printing NOT available");
-                }
-            );*/
-			
-					
             $("a.logoff").click(function() {
                 $.mobile.showPageLoadingMsg();
                 $.ajax({
@@ -424,7 +375,10 @@ a:hover {color:#ccc; text-decoration:none}
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
                        // alert("error while processing ...");
-                        jAlert('error while processing ...','');
+					   
+					     jAlert('Your Session has expired,pleass Login.','');
+					window.location.href = "login.html";
+                    
                     }
                 });
             });
@@ -433,7 +387,8 @@ a:hover {color:#ccc; text-decoration:none}
                     window.location.href = $(this).attr("rel");
                 }
             });
-           $(".close").click(function() {
+
+ $(".close").click(function() {
              	jConfirm('Are you sure you want to close this job?', 'Confirmation Dialog', function(r) {
 					if(r==true)
 					{
@@ -484,10 +439,10 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                      //  alert("error while processing ...");
+                       // alert("error while processing ...");
                         jAlert('error while processing ...','');
                     }
-                });                
+                });
             });
             $(".box-info .select.box .ui-select").click(function() {
                 if ($(".box-info .box-type").hasClass("hidden")) {
@@ -573,10 +528,12 @@ a:hover {color:#ccc; text-decoration:none}
                 if (!$(this).next().size()) {
                     var _this = this;
                     $(".box-info .box-type").delay(500).slideUp("fast", function() {
-                        //$("#print_result .jobid").html("&lt;Job #" + $(".contentid").attr("jobid") + "&gt;");
-                        $("#print_result .jobname").html("&lt;" + $(".job-title .job-name").html() + "&gt;");
+						//Lable by mayur
+						
+                        $("#print_result .jobid").html($(".contentid").attr("jobid"));
+                        $("#print_result .jobname").html($(".job-title .job-name").html());
                         $("#print_result .roomname").html($("#select-room option:selected").text());
-                        $("#print_result .contentid").html("<small>#</small>" + $(".contentid").attr("contentid"));
+                        $("#print_result .contentid").html($(".contentid").attr("contentid"));
                         switch ($(_this).attr("type")) {
                             case "box":
                                 $(".item-locate .box-type").html("box");
@@ -648,7 +605,7 @@ a:hover {color:#ccc; text-decoration:none}
                 $("#select-category").prev().find(".ui-btn-text").html("Category");
                 $(".object-name").val("");
                 $(".object-desc").val("");
-               /*  $(".photo-sec .items .image-item").remove(); */
+                $(".photo-sec .items .image-item").remove();
                 $("#damage-state").val("").prev().find(".ui-btn-text").html("Is this item damaged?");
                 $(".damage-desc").val("").parent().addClass("hidden").hide();
                 $(".damage-info .photo-sec").addClass("hidden").hide();
@@ -661,9 +618,8 @@ a:hover {color:#ccc; text-decoration:none}
                 $(".submit-item").addClass("hidden").hide();
                 $(".room-info .add-item").show();
                 $(".locate").hide();
-                if (params && params["add-item"] == "true") {
-                    $(".room-info .add-item").trigger("click");
-                }
+                $("input.submit").val("submit").parents(".ui-btn").find(".ui-btn-text").html("submit");
+                $("input.cancel").parents(".ui-btn").hide();
             };
             $("#select-room").change(function() {
                 if (!$(this).val())
@@ -682,8 +638,7 @@ a:hover {color:#ccc; text-decoration:none}
                 $(".damage-sec .select.state").next().hide();
                 $(".damage-sec").next().hide();
             });
-            /* $(".add-image").click(function() { 
-            	
+            $(".add-image").click(function() {
                 var _this = this;
                 var options = {
                     quality: 100,
@@ -692,18 +647,44 @@ a:hover {color:#ccc; text-decoration:none}
                 
                 navigator.camera.getPicture(
                     function (uri) {
-					
-                       
-						var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /></div>");
+                        var imageItem = $("<div class='image-item'><img src='' class='image-item' width='70' height='70' /></div>");
+                        $(imageItem).find("img").attr('src', uri);
                         $(_this).parent().prepend(imageItem);
-                        
-                        $(imageItem).children("img").attr('src', uri);
                     },
                     function() {},
                     options
                 );
-            
-            });*/
+            });
+            $("input.cancel").click(function() {
+                window.location.href = "view-contents.html";
+            });
+            $("span.del").live("click", function() {
+                if (!confirm("Are you sure you want to delete the photo?"))
+                    return;
+                var _this = this;
+                $.mobile.showPageLoadingMsg();
+                $.ajax({
+                    type: "POST",
+                    url: config.service.baseurl + "/room/delete-photo",
+                    data: {
+                        imageid: $(_this).prev().attr("id")
+                    },
+                    dataType: "json",
+                    success: function(rsp) {
+						$.mobile.hidePageLoadingMsg();
+                        if (!rsp.auth) {
+                            window.location.href = "login.html";
+                            return;
+                        }
+                        $(_this).parent().remove();
+                    },
+                    error: function(err) {
+                        $.mobile.hidePageLoadingMsg();
+                        //alert("error while processing ...");
+                        jAlert('error while processing ...','');
+                    }
+                });
+            });
             $(".room-info .add-item").click(function() {
                 $.mobile.showPageLoadingMsg();
                 $.ajax({
@@ -723,8 +704,8 @@ a:hover {color:#ccc; text-decoration:none}
                         $(rsp.categories).each(function (i) {
                             $("#select-category").append("<option value='" + this.id + "'>" + this.name + "</option>");
                         });
-                        $(".type-item.box .items").html("");
                         $(rsp.contents.boxes).each(function (i) {
+                            $(".type-item.box .items").html("");
                             var item = $(".type-item.box .list-item.template").clone().removeClass("hidden").removeClass("template");
                             $(item).find(".box-item").html(this.name).attr("value", this.id).attr("contentid", this.contentid);
                             $(".type-item.box .items").append(item);
@@ -740,20 +721,20 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                        //alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
             $("input.submit").click(function() {
 				
-				alert(myimage);
                 if (!$(".object-name").val()) {
                    // alert("Please enter object name.");
-                    jAlert('Please enter object name.','');
+                    jAlert('error while processing ...','');
                     return false;
                 }
                 if (!$("#select-category").val()) {
-                  //  alert("Please select category.");
+                   // alert("Please select category.");
                     jAlert('Please select category.','');
                     return false;
                 }
@@ -764,63 +745,62 @@ a:hover {color:#ccc; text-decoration:none}
                             selectedBox = this;
                     }
                 });
-				
-				 var selectedtag = false;
-                $(".box-info .type-item .box-item.selected").each(function(i) {
-                    if (!$(this).next().size()) {
-                        if ($(this).attr("type"))
-                            selectedtag = this;
-                    }
-                });
-                
-              
-				
                 if (!selectedBox) {
-                    //alert("Please select box / tag / bag.");
+                   // alert("Please select box / tag / bag.");
                     jAlert('Please select box / tag / bag.','');
                     return false;
                 }
-                
-               /*  var a= $(selectedbag).attr("value");
-				alert(a); */
-				
-				
-		      $.mobile.showPageLoadingMsg();
-                $.ajax({
+                $.mobile.showPageLoadingMsg();
+          		var url1="";
+			
+				if($("input.submit").val() == "submit")
+				{
+					alert(url);
+					url1="/content/submit";
+				}
+				else
+				{
+					
+					url1="/content/update";
+					alert(url1);
+				}
+		  
+			    $.ajax({
                     type: "POST",
-                    url: config.service.baseurl + "/content/submit",
+                    url: config.service.baseurl + url1,
                     data: {
                         roomid: $("#select-room").val(),
                         contentid: $(".contentid").attr("contentid"),
                         name: $(".object-name").val(),
                         desc: $(".object-desc").val(),
-                        category: $("#select-category").val(), 
+                        category: $("#select-category").val(),
                         damage: $("#damage-state").val(),
                         damagedesc: $(".damage-desc").val(),
 						item_photo: myimage,
 						item_damage_photo: myimage2,
 						item_damage_photo1: myimage3,
-						item_total_loss: $("#item_total_loss").val(),
-						damagedesc: $(".damage-desc").val(),
-                        boxtype: $(selectedBox).attr("type"), 
+                        boxtype: $(selectedBox).attr("type"),
                         boxvalue: $(selectedBox).attr("value")
                     },
                     dataType: "json",
                     success: function (rsp) {
-						/* $.mobile.hidePageLoadingMsg(); */
-						  window.location.href = "contents.html";
-                 /*          return; */
-                        
-                         /*  if (!rsp.auth) {
+					
+						$.mobile.hidePageLoadingMsg();
+                        if (!rsp.auth) { 
                             window.location.href = "login.html";
                             return;
-                        } */
-                       /*  var options = new FileUploadOptions();
+                        }
+                        var options = new FileUploadOptions();
                         options.fileKey = "image";
                         options.mimeType = "image/jpeg";
                         var params = new Object();
-                        params.contentid = rsp.contentid; */
-                        /* if ($(".item-info .items .image-item").size() > 0) {
+                        params.contentid = rsp.contentid;
+                        $(".item-info .items .image-item").each(function(i) {
+                            if ($(this).find('img').attr("id")) {
+                                $(this).remove();
+                            }
+                        });
+                        if ($(".item-info .items .image-item").size() > 0) {
                             params.phototype = "base";
                             options.params = params;
                             $(".item-info .items .image-item").each(function(i) {
@@ -835,21 +815,32 @@ a:hover {color:#ccc; text-decoration:none}
                                             $(".item-info .items .image-item").slideUp("fast", function() {
                                                 $(this).remove();
                                                 if ($("#damage-state").val() != "damaged" || $(".damage-info .items .image-item").size() == 0) {
-                                                    initContentInfo();
-                                                    $(".content-item").hide();
+                                                    if ($("input.submit").val() == "submit") {
+                                                        initContentInfo();
+                                                        $(".content-item").hide();
+                                                    }
+                                                    else {
+                                                        window.location.href = "view-contents.html";
+                                                    }
                                                 }
                                             });
                                         }
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing ...");
+                                        //alert("error while processing2 ...");
+                                        jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );
                             });
-                        } */
-                        /* if ($("#damage-state").val() == "damaged" && $(".damage-info .items .image-item").size() > 0) {
+                        }
+                        $(".damage-info .items .image-item").each(function(i) {
+                            if ($(this).find('img').attr("id")) {
+                                $(this).remove();
+                            }
+                        });
+                        if ($("#damage-state").val() == "damaged" && $(".damage-info .items .image-item").size() > 0) {
                             params.phototype = "damage";
                             options.params = params;
                             $(".damage-info .items .image-item").each(function(i) {
@@ -862,30 +853,41 @@ a:hover {color:#ccc; text-decoration:none}
 										$.mobile.hidePageLoadingMsg();
                                         if (i == ($(".damage-info .items .image-item").size() - 1)) {
                                             $(".damage-info .items .image-item").slideUp("fast", function() {
-                                                $(this).remove();
-                                                initContentInfo();
-                                                $(".content-item").hide();
+                                                if ($("input.submit").val() == "submit") {
+                                                    $(this).remove();
+                                                    initContentInfo();
+                                                    $(".content-item").hide();
+                                                }
+                                                else {
+                                                    window.location.href = "view-contents.html";
+                                                }
                                             });
                                         }
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing ...");
+                                       // alert("error while processing3 ...");
+                                        jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );
                             });
-                        } */
-                       /*  if ($(".item-info .items .image-item").size() == 0 && ($("#damage-state").val() != "damaged" || $(".damage-info .items .image-item").size() == 0)) {
-                            initContentInfo();
-                            $(".content-item").hide();
-                        } */
+                        }
+                        if ($(".item-info .items .image-item").size() == 0 && ($("#damage-state").val() != "damaged" || $(".damage-info .items .image-item").size() == 0)) {
+                            if ($("input.submit").val() == "submit") {
+                                initContentInfo();
+                                $(".content-item").hide();
+                            }
+                            else {
+                                window.location.href = "view-contents.html";
+                            }
+                        }
                     },
-                    error:  function (err) {
-  					  window.location.href = "contents.html";
-                        /* $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ..."); */
-                    } 
+                    error: function (err) {
+						$.mobile.hidePageLoadingMsg();
+                        //alert("error while processing1 ...");
+                        jAlert('error while processing ...','');
+                    }
                 });
             });
             $(".print").colorbox({
@@ -908,7 +910,7 @@ a:hover {color:#ccc; text-decoration:none}
             $.mobile.showPageLoadingMsg();
             $.ajax({
                 type: "POST",
-                url: config.service.baseurl + "/content/default",
+                url: config.service.baseurl + "/content/view",
                 data: {},
                 dataType: "json",
                 success: function(rsp) {
@@ -922,24 +924,109 @@ a:hover {color:#ccc; text-decoration:none}
                     $(rsp.rooms).each(function (i) {
                         $("#select-room").append("<option value='" + this.id + "'>" + this.name + "</option>");
                     });
-                    if (rsp.roomid) {
-                        $("#select-room").val(rsp.roomid);
-                        $(".select.room .ui-btn-text").html($("#select-room option:selected").text());
-                        $(".room-info .room-name").html($("#select-room option:selected").text());
-                        $(".room-info").show();
-                        $(".content-item").hide();
-                        initContentInfo();
+                    $("#select-room").val(rsp.roomid);
+                    $(".select.room .ui-btn-text").html($("#select-room option:selected").text());
+                    $(".room-name").html($("#select-room option:selected").text());
+                    $(".view-items").show();
+                    $(".item-info .contentid").html(rsp.jobid + '-' + rsp.roomkey + '-' + rsp.content_last).attr("contentid", rsp.content_last).attr("roomkey", rsp.roomkey).attr("jobid", rsp.jobid);
+                    $(".object-name").val(rsp.contentinfo.name);
+                    $(".object-desc").val(rsp.contentinfo.description);
+                    $("#damage-state").val(rsp.contentinfo.damage);
+                    $(".select.state .ui-btn-text").html($("#damage-state option:selected").text());
+                    $(".damage-desc").val(rsp.contentinfo.damagedescription);
+                    if (rsp.contentinfo.damage == "damaged") {
+                        $(".damage-desc").parent().removeClass("hidden");
+                        $(".damage-info .photo-sec").removeClass("hidden");
                     }
+                    $(rsp.categories).each(function (i) {
+                        $("#select-category").append("<option value='" + this.id + "'>" + this.name + "</option>");
+                    });
+                    $("#select-category").val(rsp.contentinfo.category);
+                    $(".select.category .ui-btn-text").html($("#select-category option:selected").text());
+                    $(".type-item.box .items").html("");
+                    $(rsp.contents.boxes).each(function (i) {
+                        var item = $(".type-item.box .list-item.template").clone().removeClass("hidden").removeClass("template");
+                        $(item).find(".box-item").html(this.name).attr("value", this.id).attr("contentid", this.contentid);
+                        $(".type-item.box .items").append(item);
+                    });
+                    $(rsp.contents.tags).each(function (i) {
+                        $(".type-item.tag .items").html("");
+                        var item = $(".type-item.tag .list-item.template").clone().removeClass("hidden").removeClass("template");
+                        $(item).find(".box-item").html(this.name).attr("value", this.id).attr("contentid", this.contentid);
+                        $(".type-item.tag .items").append(item);
+                    });
+                    $(rsp.contentinfo.photos).each(function(i) {
+                        var imageItem = $(".item-info .image-item.template").clone().removeClass("template").removeClass("hidden");
+                        $(imageItem).find("img").attr("src", config.site.baseurl + this.image).attr("id", this.id);
+                        $(".item-info .items").prepend(imageItem);
+                    });
+                    $(rsp.contentinfo.damagephotos).each(function(i) {
+                        var imageItem = $(".damage-info .image-item.template").clone().removeClass("template").removeClass("hidden");
+                        $(imageItem).find("img").attr("src", config.site.baseurl + this.image).attr("id", this.id);
+                        $(".damage-info .items").prepend(imageItem);
+                    });
+                    switch (rsp.contentinfo.boxtype) {
+                        case "newbox":
+                            $(".box-type .type-item.box > .box-item")
+                                .addClass("selected")
+                                .next().removeClass("hidden")
+                                .children(".list-item.new").children(".box-item").addClass("selected")
+                                .next().removeClass("hidden")
+                                .children("span." + rsp.contentinfo.box).children(".box-item").addClass("selected")
+                                .trigger("click");
+                            break;
+                        case "BOX":
+                            var boxId = null;
+                            $(rsp.contents.boxes).each(function (i) {
+                                   if(this.name == rsp.contentinfo.package){
+                                        boxId = this.id;
+                                   }
+                            });
+                            $(".box-type .type-item.box > .box-item")
+                                .addClass("selected")
+                                .next().removeClass("hidden")
+                                .children(".items").find(".box-item[value='" + boxId + "']").addClass("selected")
+                                .trigger("click");
+                            break;
+                        case "notboxedtag":
+                            $(".box-type .type-item.tag > .box-item")
+                                .addClass("selected")
+                                .next().removeClass("hidden")
+                                .children(".list-item.first").children(".box-item").addClass("selected")
+                                .trigger("click");
+                            break;
+                        case "newtag":
+                            $(".box-type .type-item.tag > .box-item")
+                                .addClass("selected")
+                                .next().removeClass("hidden")
+                                .children(".list-item.new").children(".box-item").addClass("selected")
+                                .next().removeClass("hidden")
+                                .children("span." + rsp.contentinfo.box).children(".box-item").addClass("selected")
+                                .trigger("click");
+                            break;
+                        case "tag":
+                            $(".box-type .type-item.tag > .box-item")
+                                .addClass("selected")
+                                .next().removeClass("hidden")
+                                .children(".items").find(".box-item[value='" + rsp.contentinfo.box + "']").addClass("selected")
+                                .trigger("click");
+                            break;
+                        case "bag":
+                            $(".box-type .type-item.bag > .box-item")
+                                .addClass("selected")
+                                .trigger("click");
+                            break;
+                    }
+                    $(".content-item").show();
+                    $(".room-info .add-item").hide();
+                    $(".submit-item.submit").addClass("hidden").hide();
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    //alert("error while processing ...");
+                  //  alert("error while processing ...");
                     jAlert('error while processing ...','');
                 }
             });
-            if (params && params["add-item"] == "true") {
-           
-            }
         });
         
     </script>
@@ -947,7 +1034,7 @@ a:hover {color:#ccc; text-decoration:none}
 <body>
 <div class="logo"><a><img src="images/logo.png" width="110" /></a></div>
 <div data-role="page" data-theme="m">
-    <div class="page-job-setup">
+    <div class="page-job-setup view-contents">
         
         <div class="header">
             <div class="account"></div>
@@ -976,9 +1063,9 @@ a:hover {color:#ccc; text-decoration:none}
                     <option value="">Select Room</option>
                 </select>
             </div>
-            <div class="room-info hidden">
-                <div class="room-name">Kitchen</div>
-                <a class="add-item"><img src="images/add_item.png" /></a>
+            <div class="room-info">
+                <div class="room-name"></div>
+                <a class="add-item hidden"><img src="images/add_item.png" /></a>
                 <div class="view-items"><input type="button" class="viewitems" value="view items" data-inline="true" data-shadow="false" /></div>
                 <div class="clear"></div>
             </div>
@@ -990,24 +1077,24 @@ a:hover {color:#ccc; text-decoration:none}
                         <input type="text" placeholder="&lt;enter description&gt;" class="object-desc" />
                     </div>
                     <div class="photo-sec">
+                      <a href="#dialog2" name="modal">Add Category</a>
                         <div class="select category">
-                       
-                         <a href="#dialog2" name="modal">Add Category</a>
                             <select name="select-category" id="select-category" data-icon="arrow-r" data-iconpos="right">
                                 <option value="">Category</option>
                             </select>
                         </div>
                         <div class="image">
                             <div class="items image-item">
-                             
-          					<img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" />
-                            <a onclick="capturePhoto();"><img src="images/add_image.png" /></a>
+                            <img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" />
+                            <a  onclick="capturePhoto();"><img src="images/add_image.png" /></a>
                             
+                    <!--        <a class="add-image"><img src="images/add_image.png" /></a>-->
                             
                             </div>
-                            <!-- <div class="image-item template hidden">
-                                <img src="" />
-                            </div> -->
+                            <div class="image-item template hidden">
+                                <img src="" width="70" class="image-item" height="70" />
+                                <span class="del"></span>
+                            </div>
                             <div class="clear"></div>
                         </div>
                         <div class="clear"></div>
@@ -1017,30 +1104,11 @@ a:hover {color:#ccc; text-decoration:none}
                 <div class="damage-info">
                     <div class="damage-sec">
                         <div class="select state">
-                          <select name="item_total_loss" id="item_total_loss" data-icon="arrow-r" data-iconpos="right">
-                                <option value="N" selected >Item total loss.No</option>
-                                <option value="Y">Item total loss.Yes</option>
-                               
-                            </select>
-                           
-                          
-                        </div>
-                        
-                    </div>
-                    
-                    <div class="clear"></div>
-                </div>
-                <div class="damage-info">
-                    <div class="damage-sec">
-                        <div class="select state">
-                       
                             <select name="damage-state" id="damage-state" data-icon="arrow-r" data-iconpos="right">
-                  <!--              <option value="">Is this item damaged?</option>-->
+                               <!-- <option value="">Is this item damaged?</option>-->
                                 <option value="damaged">Damaged</option>
                                 <option value="notdamaged">Not Damaged</option>
                             </select>
-                            
-                          
                         </div>
                         <div class="hidden">
                             <input type="text" placeholder="&lt;enter description&gt;" class="damage-desc hidden" />
@@ -1048,9 +1116,9 @@ a:hover {color:#ccc; text-decoration:none}
                     </div>
                     <div class="photo-sec hidden">
                         <div class="image">
-                            <div class="items">
-                
-                             <img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage2" src="" />
+                            <div class="items image-item">
+                            
+                            <img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage2" src="" />
                             <a  onclick="capturePhoto2();"><img src="images/add_image.png" /></a>
                             
                             
@@ -1060,18 +1128,21 @@ a:hover {color:#ccc; text-decoration:none}
                               <img style="display:none;width:70px;height:70px;" class="image-item"   id="smallImage3" src="" />
                             <a  onclick="capturePhoto3();"><img src="images/add_image.png" /></a>
                             
+                           <!-- <a class="add-image"><img src="images/add_image.png" /></a>-->
+                            
                             
                             </div>
-                           <!--  <div class="image-item template hidden">
-                                <img src="" />
-                            </div>   -->                          
+                            <div class="image-item template hidden">
+                                <img src="" class="image-item" width="70" height="70" />
+                                <span class="del"></span>
+                            </div>                            
                         </div>
                     </div>
                     <div class="clear"></div>
                 </div>
                 <div class="box-info">
                     <div class="select box">
-              <select name="select-box" id="select-box" data-icon="arrow-r" data-iconpos="right">
+                        <select name="select-box" id="select-box" data-icon="arrow-r" data-iconpos="right">
                             <option value="">Box / Bag / Tag</option>
                         </select>
                         <div class="box-type hidden">
@@ -1098,10 +1169,10 @@ a:hover {color:#ccc; text-decoration:none}
                                 <div class="box-item">Tag - Large Item</div>
                                 <div class="box-list hidden">
                                     <div class="list-item first">
-                                        <div class="box-item" type="notboxedtag">Not Tag</div>
+                                        <div class="box-item" type="notboxedtag">Not Boxed</div>
                                     </div>
                                     <div class="list-item new">
-                                        <div class="box-item"><img src="images/new_box_plug.png" /> New tag</div>
+                                        <div class="box-item"><img src="images/new_box_plug.png" /> New Box</div>
                                         <div class="box-style hidden">
                                             <span class="s"><span class="box-item" type="newtag" value="s">s</span></span>
                                             <span class="m"><span class="box-item" type="newtag" value="m">m</span></span>
@@ -1116,8 +1187,8 @@ a:hover {color:#ccc; text-decoration:none}
                                     <div class="items"></div>
                                 </div>
                             </div>
-                            <div class="type-item">
-                                <div class="box-item" type="bag" value="bag" >Bag</div>
+                            <div class="type-item bag">
+                                <div class="box-item" type="bag">Bag</div>
                             </div>
                         </div>
                     </div>
@@ -1145,7 +1216,8 @@ a:hover {color:#ccc; text-decoration:none}
                     <div class="clear"></div>
                 </div>
                 <div class="submit-item big-btn hidden">
-                    <input type="button" class="submit" value="submit" data-inline="true" data-shadow="false" />
+                    <input type="button" class="submit" value="update" data-inline="true" data-shadow="false" />
+                    <input type="button" class="cancel" value="cancel" data-inline="true" data-shadow="false" />
                 </div>
             </div>
         </div>
@@ -1156,7 +1228,7 @@ a:hover {color:#ccc; text-decoration:none}
 </div>
 <div class="hidden">
     <a class="print-content"><img src="images/print_white.png"></a>
-    <div id="print_result">        
+    <div id="print_result">
         <div class="job-info">
             <div class="jobid"></div>
             <div class="jobname"></div>
@@ -1186,7 +1258,6 @@ Category Name : <input type="text" id="txt_categoryname" />
 <!-- Mask to cover the whole screen -->
   <div id="mask"></div>
 </div>
-
 
 </body>
 </html>

@@ -12,14 +12,14 @@
 	<script src="jquery_003.js" type="text/javascript"></script>
 	<script src="jquery.js" type="text/javascript"></script>
 	<link href="jquery.css" rel="stylesheet" type="text/css" media="screen">
-   
-    
+	
      <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
-      <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<!--      <script type="text/javascript" charset="utf-8" src="phonegap.js";></script> -->
       <script type="text/javascript" charset="utf-8">
-    	
-		var pictureSource;   // picture source
+   
+    var pictureSource;   // picture source
 		var destinationType; // sets the format of returned value 
+		
 		var ar1="";
 		var ar2="";
 		var setimg="";
@@ -31,12 +31,14 @@
     // Wait for Cordova to connect with the device
     //
     document.addEventListener("deviceready",onDeviceReady,false);
+
     // Cordova is ready to be used!
     //
     function onDeviceReady() {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
     }
+
     // Called when a photo is successfully retrieved
     //
     function onPhotoDataSuccess(imageData) {
@@ -44,18 +46,37 @@
       // console.log(imageData);
 
       // Get image handle
-	    //
-     var  smallImage = document.getElementById('smallImage');
+	  
+	
+		
+				
+                    
+      //
+      var smallImage = document.getElementById('smallImage');
+		
 		  // 	 alert(myimage);
+		  
       // Unhide image elements
       //
       smallImage.style.display = 'block';
+
       // Show the captured photo
       // The inline CSS rules are used to resize the image
       //
- // alert(imageData);
+    
+
+	
+alert(imageData);
+
+
+	
 	  smallImage.src = "data:image/jpeg;base64," + imageData;
+	  
       //document.getElementById('smallImage').getAttribute('src') == "images/logo.png";
+	  
+	 
+	   
+         
 		  if(ar1!="")
 		  {
 			ar2=ar2+","+ar1;  
@@ -70,41 +91,28 @@
 		  }
 		  if(ar2=="")
 		  {
-			ar2=ar1;
+				ar2=ar1;
 		  }
+		  
 		  if(setimg!="")
 		  {
-			setimg2=setimg2+","+setimg;
-			document.getElementById('boldStuff').innerHTML = setimg2;
+			 setimg2=setimg2+","+setimg;
+			 
+		
+						
+							 document.getElementById('boldStuff').innerHTML = setimg2;
 
 		  }
 		  else
 		  {
 			  
+			
+						
 			setimg ='<div class="image-item"><img style="width:70px;height:70px;" class="image-item" id="smallImage" src="data:image/jpeg;base64,'+ imageData +'" /><span class="del"></span></div>';  
 		  	document.getElementById('boldStuff').innerHTML = setimg;
 		  }
-		  if(setimg2=="")
-		  {
-			  ar2=setimg;
-		  }
-//alert(print(fruits));
 
-//alert(ar2);
-// $(document).ready(function() {
-// $(".add-image").live("click", function() {
-//                var _this = this;
-//             
-//           
-//                    	var imageItem = $(ar2);
-//                        $(_this).parent().prepend(imageItem);
-//                        //$(imageItem).children("img").attr('src', uri);
-//      
-//                   
-//            });
-//                    
-//                       
-//  });
+
 			 			
 		
     }
@@ -135,12 +143,11 @@
 	
 	
     function capturePhoto() {
-       // alert('capturePhoto');
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture( onPhotoDataSuccess , onFail, { quality: 50,
-        destinationType: destinationType.DATA_URL });
 		
-		}
+      // Take picture using device camera and retrieve image as base64-encoded string
+        navigator.camera.getPicture( onPhotoDataSuccess , onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+     }
 	
 
     // A button will call this function
@@ -164,8 +171,7 @@
     // Called if something bad happens.
     // 
     function onFail(message) {
-     // alert('Failed because: ' + message);
-      jAlert('Failed because:' + message,'');
+      alert('Failed because: ' + message);
     }
 	
 	
@@ -178,9 +184,6 @@
     <script src="js/jquery.mobile-1.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-			
-			
-			
             $("a.logoff").click(function() {
                 $.mobile.showPageLoadingMsg();
                 $.ajax({
@@ -194,7 +197,9 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                     //   alert("error while processing ...");
+                        jAlert('Your Session has expired,pleass Login.','');
+					window.location.href = "login.html";
                     }
                 });
             });
@@ -203,64 +208,38 @@
                     window.location.href = $(this).attr("rel");
                 }
             });
-            $(".close").click(function() {
-
-					jConfirm('Are you sure you want to close this job?', 'Confirmation Dialog', function(r) {
-						if(r==true)
-						{
-							 $.mobile.showPageLoadingMsg();
-                                $.ajax({
-                                    type: "POST",
-                                    url: config.service.baseurl + "/job/close",
-                                    data: {},
-                                    dataType: "json",
-                                    success: function(rsp) {
-                                        $.mobile.hidePageLoadingMsg();
-                                        if (!rsp.auth) {
-                                            window.location.href = "login.html";
-                                            return;
-                                        }
-                                        window.location.href = rsp.redirect;
-                                    },
-                                    error: function(err) {
-                                        $.mobile.hidePageLoadingMsg();
-                                        window.location.href = "login.html";
-                                    }
-                                });
-							  
-						}
-						else
-						{
-								return false;	
-						}
+         $(".close").click(function() {
+             	jConfirm('Are you sure you want to close this job?', 'Confirmation Dialog', function(r) {
+					if(r==true)
+					{
+						    $.mobile.showPageLoadingMsg();
+            			    $.ajax({
+                    type: "POST",
+                    url: config.service.baseurl + "/job/close",
+                    data: {},
+                    dataType: "json",
+                    success: function(rsp) {
+						$.mobile.hidePageLoadingMsg();
+                        if (!rsp.auth) {
+                            window.location.href = "login.html";
+                            return;
+                        }
+                        window.location.href = rsp.redirect;
+                    },
+                    error: function(err) {
+                        $.mobile.hidePageLoadingMsg();
+                     //   alert("error while processing ...");
+                        jAlert('error while processing ...','');
+                    }
+                });
+					}
+					else
+					{
+							return false;	
+					}
 					});
-				
-			
-                      /*
-                                $.mobile.showPageLoadingMsg();
-                                $.ajax({
-                                    type: "POST",
-                                    url: config.service.baseurl + "/job/close",
-                                    data: {},
-                                    dataType: "json",
-                                    success: function(rsp) {
-                                        $.mobile.hidePageLoadingMsg();
-                                        if (!rsp.auth) {
-                                            window.location.href = "index.html";
-                                            return;
-                                        }
-                                        window.location.href = rsp.redirect;
-                                    },
-                                    error: function(err) {
-                                        $.mobile.hidePageLoadingMsg();
-                                        window.location.href = "login.html";
-                                    }
-                                });
-                  
-                      
-				/*window.location.href = "index.html";*/
-            });            
-            $("#add-room").change(function() {
+            });
+	       $("#add-room").change(function() {
                 if (!$(this).val())
                     return false;
                 var roomItem = $(".room-item.template").clone().removeClass("template");
@@ -273,52 +252,43 @@
                 }
                 $(".room-list").append(roomItem);
             });
-            $(".add-image").live("click", function() {
-                var _this = this;
-                var options = {
-                    quality: 100,
-                    destinationType: navigator.camera.DestinationType.FILE_URI
-             
-                };
-                
-                navigator.camera.getPicture(
-                    function (uri) {
-                    	var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /><span class='del'></span></div>");
-                        $(_this).parent().prepend(imageItem);
-                        $(imageItem).children("img").attr('src', uri);
-                    },
-                    function() {},
-                    options
-                );
-            });
+          //  $(".add-image").live("click", function() {
+//                var _this = this;
+//                var options = {
+//                    quality: 100,
+//                    destinationType: navigator.camera.DestinationType.FILE_URI
+//             
+//                };
+//                
+//                navigator.camera.getPicture(
+//                    function (uri) {
+//                    	var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /><span class='del'></span></div>");
+//                        $(_this).parent().prepend(imageItem);
+//                        $(imageItem).children("img").attr('src', uri);
+//                    },
+//                    function() {},
+//                    options
+//                );
+//            });
             $(".image-item span.del").live("click", function() {
                 $(this).parent().remove();
             });
             $(".save").live("click", function() {
-              //  $.mobile.showPageLoadingMsg();
-               
-			  
-				var roomItem = $(this).parents(".room-item");
-					// validation by mayur                
-				if($(roomItem).find(".image-item").size()<=1)
-				{
-				 jAlert('Please Add Atleast one Image.');	
-				 return false;
-				} 
-				
-				var roomName = 
+                $.mobile.showPageLoadingMsg();
+                
+            	var roomItem = $(this).parents(".room-item");
+
+                var roomName = 
                     $(roomItem).find(".room-name").get(0).tagName.toUpperCase() == "INPUT" ? 
                         $(roomItem).find(".room-name").val() :
                         $(roomItem).find(".room-name").html();
 
-                if (roomName=="")
-				{   $.mobile.hidePageLoadingMsg();
-                    jAlert('Please enter the room name.','');
+                if (roomName == "") {
+                    $.mobile.hidePageLoadingMsg();
+                 //   alert("Please enter the room name.");
+                    jAlert('error while processing ...','');
                     return false;
                 }
-
-				
-				
                 $.ajax({
                     type: "POST",
                     url: config.service.baseurl + "/room/add",
@@ -328,18 +298,17 @@
                     },
                     dataType: "json",
                     success: function(rsp) {
-					
-					console.log(JSON.stringify(rsp));
-					//	$.mobile.hidePageLoadingMsg();
+						$.mobile.hidePageLoadingMsg();
                         if (!rsp.auth) {
                             window.location.href = "login.html";
                             return;
                         }
                         if (!rsp.process == "failure") {
-                            alert("The room name has been duplicated. Please enter new room name.");
+                           // alert("The room name has been duplicated. Please enter new room name.");
+                            jAlert('The room name has been duplicated. Please enter new room name.','');
                             return;
                         }
-                        if ($(roomItem).find(".image-item").size() > 0) {
+                      /*  if ($(roomItem).find(".image-item").size() > 0) {
                             var options = new FileUploadOptions();
                             options.fileKey = "image";
                             options.mimeType = "image/jpeg";
@@ -368,7 +337,8 @@
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        window.location.href = "login.html";
+                                       // alert("error while processing ...");
+                                        jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );
@@ -383,11 +353,12 @@
                                     }
                                 });
                             });
-                        }
+                        }*/
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        window.location.href = "login.html";
+                       // alert("error while processing ...");
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -400,6 +371,7 @@
                 success: function(rsp) {
 					$.mobile.hidePageLoadingMsg();
                     if (!rsp.auth) {
+
                         window.location.href = "login.html";
                         return;
                     }
@@ -412,7 +384,8 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    window.location.href = "login.html";
+                  //  alert("error while processing ...");
+                    jAlert('error while processing ...','');
                 }
             });
         });
@@ -456,34 +429,37 @@
             <div class="room-list">
                 <div class="room-item template">
                     <div class="name">
-                        <input type="text" placeholder="<Enter room name>" class="room-name" />
+                        <input type="text" placeholder="&lt;enter room name&gt;" class="room-name" />
                         <div class="room-name">Master Bedroom</div>
                         <input type="button" class="save" value="save" data-inline="true" data-shadow="false" />
                     </div>
                  <div class="image">
                      
-                    <div class="items" id='boldStuff'>
+                    <div class="items">
                     <!--    <div class="image-item">
                             <img src="" />
                         </div>-->
-         
-                        <a><img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" /></a>
-                        <a class="add-image" ><img src="images/add_image.png" /></a>
+                        <a ><img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" /></a>
+                        <a class="add-image" onclick="capturePhoto();"><img src="images/add_image.png" /></a>
                      
                         <!--    <a onclick="capturePhoto();"><img src="images/add_image.png" /></a>-->
                             </div>
                     </div>  
                   
-                    
+                    <div class="image">
+                     
+                    <!--  	<img style="display:none;width:70px;height:70px;" class="image-item" id="smallImage" src="" />
+                     <span id='boldStuff'></span>
+                        <a  onclick="capturePhoto();"><img src="images/add_image.png" /></a>-->
+                    </div>
                     <div class="clear"></div>
                 </div>
-               
+                
                 
             </div>
-           
         </div>
         
-        <!--<div class="footer"></div>-->
+        <div class="footer"></div>
         
     </div>
 </div>

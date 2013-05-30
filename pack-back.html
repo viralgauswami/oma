@@ -44,11 +44,12 @@
                     window.location.href = $(this).attr("rel");
                 }
             });
-            $(".close").click(function() {
-                if (!confirm("Are you sure you want to close this job?"))
-                    return false;
-                $.mobile.showPageLoadingMsg();
-                $.ajax({
+          $(".close").click(function() {
+             	jConfirm('Are you sure you want to close this job?', 'Confirmation Dialog', function(r) {
+					if(r==true)
+					{
+						    $.mobile.showPageLoadingMsg();
+            			    $.ajax({
                     type: "POST",
                     url: config.service.baseurl + "/job/close",
                     data: {},
@@ -63,11 +64,18 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                       // alert("error while processing ...");
+                     //   alert("error while processing ...");
                         jAlert('error while processing ...','');
                     }
                 });
+					}
+					else
+					{
+							return false;	
+					}
+					});
             });
+			
             $(".select-boxes .ui-select").click(function() {
                 if ($(this).next().hasClass("hidden")) {
                     $(".select-tags").hide();

@@ -473,6 +473,7 @@ margin-top:10px;
     position: relative;
     width: 70px;
 }
+
 .page-job-setup .room-item .image .image-item span.del {
     background: url("images/controls.png") repeat scroll -27px -2px transparent;
     border-radius: 10px 10px 10px 10px;
@@ -841,7 +842,7 @@ margin-top:10px;
     height: 99%;
     position: relative;
     text-transform: uppercase;
-    width: 99%;
+    width: 100%;
 }
 .print-content {
     position: absolute;
@@ -853,13 +854,13 @@ margin-top:10px;
     height: 20%;
 }
 #print_result .job-info .jobid {
-    float: left;
-    font-size: 25px;
+    float: right;
+	font-size: 25px;
     line-height: 60px;
     padding-left: 10px;
 }
 #print_result .job-info .jobname {
-    float: right;
+    float: left;
     font-size: 25px;
     line-height: 60px;
     padding-right: 10px;
