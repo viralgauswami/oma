@@ -97,8 +97,7 @@ a:hover {color:#ccc; text-decoration:none}
     <script type="text/javascript" charset="utf-8" src=""></script>
    <!-- <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
      --> 
-		<script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
-		<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+       <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
 	    <script type="text/javascript" charset="utf-8" src="PrintPlugin.js"></script>
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/script.js"></script>
@@ -159,11 +158,11 @@ a:hover {color:#ccc; text-decoration:none}
                     success: function(rsp) {
 						$.mobile.hidePageLoadingMsg();
  							$(".room-info .add-item").click();
-                   			alert("New Category Added");
+							 jAlert('New Category Added','');
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                     //   alert("error while processing ...");
+                     //    jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
@@ -277,10 +276,7 @@ a:hover {color:#ccc; text-decoration:none}
       // The inline CSS rules are used to resize the image
       //
       smallImage3.src = "data:image/jpeg;base64," + imageData;
-	  
-	  
-    }
-
+  }
     // Called when a photo is successfully retrieved
     //
     function onPhotoURISuccess(imageURI) {
@@ -308,10 +304,7 @@ a:hover {color:#ccc; text-decoration:none}
       // Take picture using device camera and retrieve image as base64-encoded string
       navigator.camera.getPicture( onPhotoDataSuccess , onFail, { quality: 50,
         destinationType: destinationType.DATA_URL });
-		
-		}
-	
-	
+}
 	function capturePhoto2() {
       // Take picture using device camera and retrieve image as base64-encoded string
       navigator.camera.getPicture(onPhotoDataSuccess2, onFail, { quality: 50,
@@ -424,7 +417,7 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                       // alert("error while processing ...");
+                       //  jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
@@ -454,7 +447,7 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                     //   alert("error while processing ...");
+                     //    jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
@@ -485,7 +478,7 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                      //  alert("error while processing ...");
+                      //   jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });                
@@ -741,20 +734,19 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+						 jAlert('error while processing ...','');
+                       
                     }
                 });
             });
             $("input.submit").click(function() {
 				
-				alert(myimage);
-                if (!$(".object-name").val()) {
-                   // alert("Please enter object name.");
-                    jAlert('Please enter object name.','');
+				    if (!$(".object-name").val()) {
+                     jAlert('Please enter object name.','');
                     return false;
                 }
                 if (!$("#select-category").val()) {
-                  //  alert("Please select category.");
+               
                     jAlert('Please select category.','');
                     return false;
                 }
@@ -809,8 +801,20 @@ a:hover {color:#ccc; text-decoration:none}
                     dataType: "json",
                     success: function (rsp) {
 						/* $.mobile.hidePageLoadingMsg(); */
+		jConfirm('SEND TO VENDOR ?', 'Confirmation Dialog', function(r) {
+					if(r==false)
+					{
 						  window.location.href = "contents.html";
-                 /*          return; */
+					}
+					else
+					{
+						  window.location.href = "vendor_list.html";
+					}
+					});
+					
+			
+			
+			     /*          return; */
                         
                          /*  if (!rsp.auth) {
                             window.location.href = "login.html";
@@ -844,7 +848,7 @@ a:hover {color:#ccc; text-decoration:none}
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing ...");
+                                         jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );
@@ -871,7 +875,7 @@ a:hover {color:#ccc; text-decoration:none}
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing ...");
+                                         jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );
@@ -885,7 +889,7 @@ a:hover {color:#ccc; text-decoration:none}
                     error:  function (err) {
   					  window.location.href = "contents.html";
                         /* $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ..."); */
+                         jAlert('error while processing ...',''); */
                     } 
                 });
             });
@@ -934,7 +938,7 @@ a:hover {color:#ccc; text-decoration:none}
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    //alert("error while processing ...");
+                    // jAlert('error while processing ...','');
                     jAlert('error while processing ...','');
                 }
             });
@@ -971,7 +975,7 @@ a:hover {color:#ccc; text-decoration:none}
                 <div class="item"><a class="on-truct" rel="on-truck.html">on truck</a></div>
                 <div class="item last"><a class="pack-back" rel="pack-back.html">pack back</a></div>
                 <div class="clear"></div>
-            </div>
+  </div>
             <div class="select room">
                 <select name="select-room" id="select-room" data-icon="arrow-r" data-iconpos="right">
                     <option value="">Select Room</option>

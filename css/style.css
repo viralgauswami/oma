@@ -1029,3 +1029,15 @@ margin-top:10px;
     position: fixed;
     top: 50%;
 }
+.block
+{
+padding:3px;	
+display:inline-block;
+color:blue;
+bac
+}
+.right
+{
+float:right;
+display:inline-block;
+}

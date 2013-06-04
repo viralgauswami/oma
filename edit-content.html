@@ -161,7 +161,7 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                     //   alert("error while processing ...");
+                     //    jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
@@ -374,7 +374,7 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                       // alert("error while processing ...");
+                       //  jAlert('error while processing ...','');
 					   
 					     jAlert('Your Session has expired,pleass Login.','');
 					window.location.href = "login.html";
@@ -408,7 +408,7 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                     //   alert("error while processing ...");
+                     //    jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
@@ -439,7 +439,7 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                       // alert("error while processing ...");
+                       //  jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
@@ -680,7 +680,7 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        //alert("error while processing ...");
+                        // jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
@@ -721,7 +721,7 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        //alert("error while processing ...");
+                        // jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
@@ -838,7 +838,7 @@ a:hover {color:#ccc; text-decoration:none}
                         window.location.href = "login.html";
                         return;
                     }
-                    $(".header .account").html(rsp.date + "<BR>" + rsp.account);
+			 $(".header .account").html(rsp.date + "<BR>" + rsp.account);
                     $(".job-name").html(rsp.jobname);
                     $(rsp.rooms).each(function (i) {
                         $("#select-room").append("<option value='" + this.id + "'>" + this.name + "</option>");
@@ -942,7 +942,7 @@ a:hover {color:#ccc; text-decoration:none}
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                  //  alert("error while processing ...");
+                  //   jAlert('error while processing ...','');
                     jAlert('error while processing ...','');
                 }
             });
@@ -950,7 +950,7 @@ a:hover {color:#ccc; text-decoration:none}
         
     </script>
 </head>
-<body>
+<body>  
 <div class="logo"><a><img src="images/logo.png" width="110" /></a></div>
 <div data-role="page" data-theme="m">
     <div class="page-job-setup view-contents">

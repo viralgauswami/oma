@@ -32,19 +32,12 @@
    					 $(rsp.vend_list).each(function (i) {
                         $("#select-box-category").append("<option value='" + this.ven_id + "'>" + this.ven_name + "</option>");
                     });
-					
-					
-                    },
+                   },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
                         window.location.href = "login.html";
                     }
                 });
-			
-			
-			
-			
-			
 		     $("a.logoff").click(function() {
                 $.mobile.showPageLoadingMsg();
                 $.ajax({
@@ -88,7 +81,7 @@
                                     },
                                     error: function(err) {
                                         $.mobile.hidePageLoadingMsg();
-                                        window.location.href = "login.html";
+                                       window.location.href = "login.html";
                                     }
                                 });
 							  
@@ -103,7 +96,7 @@
 
  function addvendor()
  {
-	 alert('add'); 
+	 
 	   $.mobile.showPageLoadingMsg();
                 $.ajax({
                     type: "POST",
@@ -125,14 +118,38 @@
                     error:  function (err) {
   					  window.location.href = "contents.html";
                         /* $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ..."); */
+                         jAlert('error while processing ...',''); */
                     } 
                 });
  }
         function cancel() {
-			   alert('cancel');
+			  
                 window.location.href = "view-contents.html";
             }
+			
+ function savevendor()
+	  {
+		   $.ajax({
+                    type: "POST",
+				    url: config.service.baseurl + "/content/addvendor",
+                    data: {
+                        itemid: $(selectedBox).attr("value"),
+						venid: $(selectedBox).attr("value"),
+						
+                    },
+                    dataType: "json",
+                    success: function (rsp) {
+					  jAlert('Vendor Saved..','');
+					 window.location.href = "contents.html";
+                    },
+                    error:  function (err) {
+  					  window.location.href = "contents.html";
+                        /* $.mobile.hidePageLoadingMsg();
+                         jAlert('error while processing ...',''); */
+                    } 
+                });
+	  }			
+	
     </script>
           
 </head>
@@ -156,7 +173,8 @@
                 <div class="clear"></div>
             </div>
             <div class="menu">
-                <div class="item active"><a class="setup" rel="job-setup.html">setup</a></div>
+             
+                <div class="item"><a class="setup" rel="job-setup.html">setup</a></div>
                 <div class="item"><a class="rooms" rel="rooms.html">rooms</a></div>
                 <div class="item"><a class="contents" rel="contents.html">contents</a></div>
                 <div class="item"><a class="on-truct" rel="on-truck.html">on truck</a></div>
@@ -166,12 +184,16 @@
    
      <div class="select box">
     <select name="select-box" id="select-box-category" data-icon="arrow-r" data-iconpos="right">
-                            <option value="0">Select Vendor</option>
-                        </select>
+           <option value="0">Select Vendor</option>
+      </select>
        </div>
    
+      <div>
+	   <a onClick="savevendor();" class="ui-btn-right block right">SAVE</a>
+     	<a href="#addvendor" class="ui-btn-left block left" style="text-decoration:none;">ADD VENDOR</a>
    
-      <div><a href="#addvendor">Add Vendor</a></div>
+     </div>
+      
 		</div>
  </div>
  </div>
@@ -214,15 +236,16 @@
     <div class="submit-item big-btn">
                  <a class="addvendor" onClick="addvendor();">Add Vendor</a>
                  <a class="cancelvendor" onClick="cancel();">Cancel</a>
-                 
-                 
-                </div>
+                            
+     </div>
+      
+    </div>
     
-      <div>
     
-		</div>
+    </div>
+     
  </div>
- </div>
+
  
  
  </body>

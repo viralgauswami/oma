@@ -26,7 +26,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing logoff...");
+
+			           jAlert('error while processing logoff...','');
                     }
                 });
             });
@@ -56,7 +57,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                     //   alert("error while processing ...");
+                     //    jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
@@ -93,7 +94,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing span...");
+		           jAlert('error while processing span...','');
                     }
                 });
             });
@@ -107,9 +108,7 @@
                 
                 navigator.camera.getPicture(
                     function (uri) {
-						
-						alert(DATA_URL);
-                        var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /></div>");
+						  var imageItem = $("<div class='image-item'><img src='' width='70' height='70' /></div>");
                         $(imageItem).find("img").attr('src', uri);
                         $(_this).parent().prepend(imageItem);
                     },
@@ -126,7 +125,8 @@
 
                 if (roomName == "") {
                     $.mobile.hidePageLoadingMsg();
-                    alert("Please enter the room name.");
+
+		           jAlert('Please enter the room name.','');
                     return false;
                 }
                 $.ajax({
@@ -175,7 +175,7 @@
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing 1...");
+									   jAlert('error while processing 1...','');
                                     }, 
                                     options
                                 );
@@ -189,7 +189,8 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing 2...");
+
+					   jAlert('error while processing 2...','');
                     }
                 });
             });
@@ -216,7 +217,8 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-                    alert("error while processing 3...");
+
+				   jAlert('error while processing 3...','');
                 }
             });
         });
