@@ -198,7 +198,6 @@
                 $(".truck-items .item.selected .item-choose").each(function(i) {
                     truckItems += $(this).attr("id") + ":";
                 });
-		
                 $.mobile.showPageLoadingMsg();
                 $.ajax({
                     type: "POST",
@@ -208,7 +207,6 @@
                     },
                     dataType: "json",
                     success: function(rsp) {
-					
 						$.mobile.hidePageLoadingMsg();
                         $(".truck-items").html("");
                         renderItems(rsp);
@@ -221,7 +219,8 @@
                     }
                 });
             });
-            $.mobile.showPageLoadingMsg();
+            
+			$.mobile.showPageLoadingMsg();
             $.ajax({
                 type: "POST",
                 url: "http://122.170.100.48:8086/content/onto-truck/",
