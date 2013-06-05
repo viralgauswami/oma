@@ -7,7 +7,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/jquery.mobile-1.0.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <script src="js/phonegap-1.1.0.js"></script>
+<!--    <script src="js/phonegap-1.1.0.js"></script> -->
+ <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/jquery.mobile-1.0.min.js"></script>
@@ -35,7 +36,7 @@
                     window.location.href = $(this).attr("rel");
                 }
             });
-            $(".close").click(function() {
+         $(".close").click(function() {
              	jConfirm('Are you sure you want to close this job?', 'Confirmation Dialog', function(r) {
 					if(r==true)
 					{
@@ -91,7 +92,7 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        jAlert('error while processing ...','');
+                         jAlert('error while processing ...','');
                     }
                 });
             });
@@ -122,7 +123,8 @@
 
                 if (roomName == "") {
                     $.mobile.hidePageLoadingMsg();
-                    alert("Please enter the room name.");
+                 
+					  jAlert('Please enter the room name.','');
                     return false;
                 }
                 $.ajax({
@@ -139,8 +141,9 @@
                             return;
                         }
                         if (!rsp.process == "failure") {
-                            alert("The room name has been duplicated. Please enter new room name.");
-                            return;
+
+                             jAlert('The room name has been duplicated. Please enter new room name.','');
+						    return;
                         }
                         if ($(roomItem).find(".image-item").size() > 0) {
                             var options = new FileUploadOptions();
@@ -171,7 +174,7 @@
                                     }, 
                                     function() {
                                         $.mobile.hidePageLoadingMsg();
-                                        alert("error while processing ...");
+                                         jAlert('error while processing ...','');
                                     }, 
                                     options
                                 );

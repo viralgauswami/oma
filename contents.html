@@ -104,6 +104,87 @@ a:hover {color:#ccc; text-decoration:none}
     <script src="js/jquery.mobile-1.0.min.js"></script>
     <script src="js/jquery.colorbox.min.js"></script> 
 <script>  <!--Modal JS -->	 
+var contentid=0;
+// Change For Vendor List Start
+$('#home').live('pageshow',function(event, ui){ 
+
+		  $.mobile.showPageLoadingMsg();
+			  $.ajax({
+                    type: "POST",
+                    url: config.service.baseurl + "/content/vendorlist",
+                    data: {},
+                    dataType: "json",
+                    success: function(rsp) {
+					$.mobile.hidePageLoadingMsg();
+   					 $(rsp.vend_list).each(function (i) {
+                        $("#select-box-category").append("<option value='" + this.ven_id + "'>" + this.ven_name + "</option>");
+                    });
+                   },
+                    error: function(err) {
+                        $.mobile.hidePageLoadingMsg();
+                        window.location.href = "login.html";
+                    }
+                });
+	});
+	
+	 function addvendor()
+ {
+	 
+	   $.mobile.showPageLoadingMsg();
+                $.ajax({
+                    type: "POST",
+				    url: config.service.baseurl + "/content/addvendor",
+                    data: {
+                        ven_name: $("#txt_name").val(),
+                        ven_add: $("#txt_address").val(),
+                        ven_phone: $("#txt_phone").val(),
+						ven_city: $("#txt_city").val(),
+						ven_state: $("#txt_state").val(),
+						ven_zip: $("#txt_zip").val(),
+						
+                    },
+                    dataType: "json",
+                    success: function (rsp) {
+					  jAlert('New Vendor Added..','');
+					 window.location.href = "contents.html";
+                    },
+                    error:  function (err) {
+  					  window.location.href = "contents.html";
+                        /* $.mobile.hidePageLoadingMsg();
+                         jAlert('error while processing ...',''); */
+                    } 
+                });
+ }
+        function cancel() {
+			  
+                window.location.href = "view-contents.html";
+            }
+			
+ function savevendor()
+	  {
+		
+		   $.ajax({
+                    type: "POST",
+			 url: config.service.baseurl + "/content/sendtovendor",
+                    data: {
+                        itemid: contentid,
+						venid: $('#select-box-category').attr("value"),
+						
+                    },
+                    dataType: "json",
+                    success: function (rsp) {
+					  jAlert('Vendor Saved..','');
+					 window.location.href = "contents.html"; 
+                    },
+                    error:  function (err) {
+  					  window.location.href = "job-setup.html";
+                        /* $.mobile.hidePageLoadingMsg();
+                         jAlert('error while processing ...',''); */
+                    } 
+                });
+	  }			
+
+
 	 $(document).ready(function() {	
 	//select all the a tag with name equal to modal
 	$('a[name=modal]').click(function(e) {
@@ -800,15 +881,17 @@ a:hover {color:#ccc; text-decoration:none}
                     },
                     dataType: "json",
                     success: function (rsp) {
+							contentid=rsp.contentid;
+						
 						/* $.mobile.hidePageLoadingMsg(); */
 		jConfirm('SEND TO VENDOR ?', 'Confirmation Dialog', function(r) {
 					if(r==false)
 					{
-						  window.location.href = "contents.html";
+						  window.location.href = "job-setup.html";
 					}
 					else
 					{
-						  window.location.href = "vendor_list.html";
+						  window.location.href = "#home";
 					}
 					});
 					
@@ -1191,6 +1274,102 @@ Category Name : <input type="text" id="txt_categoryname" />
 <!-- Mask to cover the whole screen -->
   <div id="mask"></div>
 </div>
+
+
+
+<!--- Vendor list  page start   -->
+
+<div data-role="page" data-theme="m" id="home">
+    <div class="page-job-setup">
+        
+        <div class="header">
+            <div class="account"></div>
+            <a class="logoff">LOGOFF</a>
+        </div>
+        
+        <div class="content" data-role="content">
+            <div class="job-title">
+                <img src="images/job_txt.png" width="14" alt="Job Title" title="Job Title" />
+                <div class="job-name"></div>
+                <div class="close-job">
+                    <input type="button" class="close" value="close" data-inline="true" data-shadow="false" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="menu">
+             
+                <div class="item"><a class="setup" rel="job-setup.html">setup</a></div>
+                <div class="item"><a class="rooms" rel="rooms.html">rooms</a></div>
+                <div class="item"><a class="contents" rel="contents.html">contents</a></div>
+                <div class="item"><a class="on-truct" rel="on-truck.html">on truck</a></div>
+                <div class="item last"><a class="pack-back" rel="pack-back.html">pack back</a></div>
+                <div class="clear"></div>
+            </div>
+   
+     <div class="select box">
+    <select name="select-box" id="select-box-category" data-icon="arrow-r" data-iconpos="right">
+           <option value="0">Select Vendor</option>
+      </select>
+       </div>
+   
+      <div>
+	   <a onClick="savevendor();" class="ui-btn-right block right">SAVE</a>
+     	<a href="#addvendor" class="ui-btn-left block left" style="text-decoration:none;">ADD VENDOR</a>
+   
+     </div>
+      
+		</div>
+ </div>
+ </div>
+ <div data-role="page" data-theme="m" id="addvendor">
+    <div class="page-job-setup">
+        
+        <div class="header">
+            <div class="account"></div>
+            <a class="logoff">LOGOFF</a>
+        </div>
+        
+        <div class="content" data-role="content">
+            <div class="job-title">
+                <img src="images/job_txt.png" width="14" alt="Job Title" title="Job Title" />
+                <div class="job-name"></div>
+                <div class="close-job">
+                    <input type="button" class="close" value="close" data-inline="true" data-shadow="false" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="menu">
+                <div class="item active"><a class="setup" rel="job-setup.html">setup</a></div>
+                <div class="item"><a class="rooms" rel="rooms.html">rooms</a></div>
+                <div class="item"><a class="contents" rel="contents.html">contents</a></div>
+                <div class="item"><a class="on-truct" rel="on-truck.html">on truck</a></div>
+                <div class="item last"><a class="pack-back" rel="pack-back.html">pack back</a></div>
+                <div class="clear"></div>
+            </div>
+      <div>
+      
+      <table>
+      <tr><td>NAME</td><td><input type="text" placeholder="Name" id="txt_name" ></td></tr>
+      <tr><td>ADDRESS</td><td><textarea id="txt_address" placeholder="Address"></textarea></td></tr>
+      <tr><td>CITY</td><td><input type="text" placeholder="City" id="txt_city" ></td></tr>
+      <tr><td>STATE</td><td><input type="text" placeholder="State" id="txt_state" ></td></tr>
+      <tr><td>ZIP</td><td><input type="text" placeholder="Zip" id="txt_zip" ></td></tr>
+      <tr><td>Phone</td><td><input type="text" placeholder="Phone" id="txt_phone" ></td></tr>
+      </table>
+      </div>
+    <div class="submit-item big-btn">
+                 <a class="addvendor" onClick="addvendor();">Add Vendor</a>
+                 <a class="cancelvendor" onClick="cancel();">Cancel</a>
+                            
+     </div>
+      
+    </div>
+    
+    
+    </div>
+     
+ </div>
+
 
 
 </body>

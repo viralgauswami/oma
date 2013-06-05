@@ -136,7 +136,7 @@
                 }
             });
             var renderItems = function(rsp) {
-				alert(JSON.stringify(rsp));
+				
                 var isBoxes = false;
                 $(rsp.boxes).each(function(i) {
                     $(this).each(function(j) {
@@ -208,11 +208,13 @@
                     },
                     dataType: "json",
                     success: function(rsp) {
+					
 						$.mobile.hidePageLoadingMsg();
                         $(".truck-items").html("");
                         renderItems(rsp);
                     },
                     error: function(err) {
+					
                         $.mobile.hidePageLoadingMsg();
                        //  jAlert('error while processing ...','');
                         jAlert('error while processing ...','');

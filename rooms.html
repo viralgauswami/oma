@@ -7,6 +7,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/jquery.mobile-1.0.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    
+    <script src="jquery_002.js" type="text/javascript"></script>
+	<script src="jquery_003.js" type="text/javascript"></script>
+	<script src="jquery.js" type="text/javascript"></script>
+	<link href="jquery.css" rel="stylesheet" type="text/css" media="screen">
+		
+		
     <script src="js/phonegap-1.1.0.js"></script>
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/script.js"></script>
@@ -26,7 +33,10 @@
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                        alert("error while processing ...");
+                     //    jAlert('error while processing ...','');
+                         jAlert('Your Session has expired,pleass Login.','');
+					window.location.href = "login.html";
+                    
                     }
                 });
             });
@@ -34,8 +44,8 @@
                 if (!$(this).parent().hasClass("active")) {
                     window.location.href = $(this).attr("rel");
                 }
-            });
-           $(".close").click(function() {
+            }); 
+			$(".close").click(function() {
              	jConfirm('Are you sure you want to close this job?', 'Confirmation Dialog', function(r) {
 					if(r==true)
 					{
@@ -82,11 +92,13 @@
                             window.location.href = "login.html";
                             return;
                         }
+						
                         window.location.href = "edit-room.html";
                     },
                     error: function(err) {
                         $.mobile.hidePageLoadingMsg();
-                         jAlert('Your Session has expired,pleass Login.','');
+                        // jAlert('error while processing ...','');
+                        jAlert('error while processing ...','');
                     }
                 });
             });
@@ -118,7 +130,8 @@
                 },
                 error: function(err) {
                     $.mobile.hidePageLoadingMsg();
-					  jAlert('error while processing ...','');
+                   //  jAlert('error while processing ...','');
+                    jAlert('error while processing ...','');
                 }
             });
         });
