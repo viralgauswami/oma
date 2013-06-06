@@ -185,105 +185,8 @@ $('#home').live('pageshow',function(event, ui){
 
 
 	 $(document).ready(function() {	
-	//select all the a tag with name equal to modal
-	$('a[name=modal]').click(function(e) {
-		//Cancel the link behavior
-		e.preventDefault();
-		//Get the A tag
-		var id = $(this).attr('href');
-	
-		//Get the screen height and width
-		var maskHeight = $(document).height();
-		var maskWidth = $(window).width();
-	
-		//Set heigth and width to mask to fill up the whole screen
-		$('#mask').css({'width':maskWidth,'height':maskHeight});
-		
-		//transition effect		
-		$('#mask').fadeIn(1000);	
-		$('#mask').fadeTo("slow",0.8);	
-	
-		//Get the window height and width
-		var winH = $(window).height();
-		var winW = $(window).width();
-              
-		//Set the popup window to center
-		$(id).css('top',  winH/2-$(id).height()/2);
-		$(id).css('left', winW/2-$(id).width()/2);
-	
-		//transition effect
-		$(id).fadeIn(2000); 
-	
-	});
-	
-	//if close button is clicked & Add Category With Ajax Call
-	$('.window .close1').click(function (e) {
-		//Cancel the link behavior
-		e.preventDefault();
-		$('#mask').hide();
-		$('.window').hide();
-
-
-		// add category
-
-	$.mobile.showPageLoadingMsg();
-                $.ajax({
-                    type: "POST",
-                    url: config.service.baseurl + "/content/addcategory",
-					data: {
-                        obj_name: $("#txt_categoryname").val(),
-						obj_is_active:1
-                    },
-                    dataType: "json",
-                    success: function(rsp) {
-						$.mobile.hidePageLoadingMsg();
- 							$(".room-info .add-item").click();
-							 jAlert('New Category Added','');
-                    },
-                    error: function(err) {
-                        $.mobile.hidePageLoadingMsg();
-                     //    jAlert('error while processing ...','');
-                        jAlert('error while processing ...','');
-                    }
-                });
-
-	});		
-	
-	//if mask is clicked
-	$('#mask').click(function () {
-		$(this).hide();
-		$('.window').hide();
-	});			
-
-	$(window).resize(function () {
 	 
- 		var box = $('#boxes .window');
- 
-        //Get the screen height and width
-        var maskHeight = $(document).height();
-        var maskWidth = $(window).width();
-      
-        //Set height and width to mask to fill up the whole screen
-        $('#mask').css({'width':maskWidth,'height':maskHeight});
-               
-        //Get the window height and width
-        var winH = $(window).height();
-        var winW = $(window).width();
-
-        //Set the popup window to center
-        box.css('top',  winH/2 - box.height()/2);
-        box.css('left', winW/2 - box.width()/2);
-	 
-	});
-	
-});
-</script>
-
-	 
-	 
-	 <script type="text/javascript" charset="utf-8">
-   
-    var pictureSource;   // picture source
+	    var pictureSource;   // picture source
 		var destinationType; // sets the format of returned value 
 		var myimage
 		var myimage2;
@@ -421,7 +324,103 @@ $('#home').live('pageshow',function(event, ui){
       jAlert('Failed because:' + message,'');
     }
 	
+	//select all the a tag with name equal to modal
+	$('a[name=modal]').click(function(e) {
+		//Cancel the link behavior
+		e.preventDefault();
+		//Get the A tag
+		var id = $(this).attr('href');
 	
+		//Get the screen height and width
+		var maskHeight = $(document).height();
+		var maskWidth = $(window).width();
+	
+		//Set heigth and width to mask to fill up the whole screen
+		$('#mask').css({'width':maskWidth,'height':maskHeight});
+		
+		//transition effect		
+		$('#mask').fadeIn(1000);	
+		$('#mask').fadeTo("slow",0.8);	
+	
+		//Get the window height and width
+		var winH = $(window).height();
+		var winW = $(window).width();
+              
+		//Set the popup window to center
+		$(id).css('top',  winH/2-$(id).height()/2);
+		$(id).css('left', winW/2-$(id).width()/2);
+	
+		//transition effect
+		$(id).fadeIn(2000); 
+	
+	});
+	
+	//if close button is clicked & Add Category With Ajax Call
+	$('.window .close1').click(function (e) {
+		//Cancel the link behavior
+		e.preventDefault();
+		$('#mask').hide();
+		$('.window').hide();
+
+
+		// add category
+
+	$.mobile.showPageLoadingMsg();
+                $.ajax({
+                    type: "POST",
+                    url: config.service.baseurl + "/content/addcategory",
+					data: {
+                        obj_name: $("#txt_categoryname").val(),
+						obj_is_active:1
+                    },
+                    dataType: "json",
+                    success: function(rsp) {
+						$.mobile.hidePageLoadingMsg();
+ 							$(".room-info .add-item").click();
+							 jAlert('New Category Added','');
+                    },
+                    error: function(err) {
+                        $.mobile.hidePageLoadingMsg();
+                     //    jAlert('error while processing ...','');
+                        jAlert('error while processing ...','');
+                    }
+                });
+
+	});		
+	
+	//if mask is clicked
+	$('#mask').click(function () {
+		$(this).hide();
+		$('.window').hide();
+	});			
+
+	$(window).resize(function () {
+	 
+ 		var box = $('#boxes .window');
+ 
+        //Get the screen height and width
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+      
+        //Set height and width to mask to fill up the whole screen
+        $('#mask').css({'width':maskWidth,'height':maskHeight});
+               
+        //Get the window height and width
+        var winH = $(window).height();
+        var winW = $(window).width();
+
+        //Set the popup window to center
+        box.css('top',  winH/2 - box.height()/2);
+        box.css('left', winW/2 - box.width()/2);
+	 
+	});
+	
+});
+</script>
+
+	 
+	 
+	 <script type="text/javascript" charset="utf-8">
 		
 	 </script>
   
@@ -1123,8 +1122,8 @@ $('#home').live('pageshow',function(event, ui){
                        
                             <select name="damage-state" id="damage-state" data-icon="arrow-r" data-iconpos="right">
                   <!--              <option value="">Is this item damaged?</option>-->
-                                <option value="damaged">Damaged</option>
                                 <option value="notdamaged">Not Damaged</option>
+								<option value="damaged">Damaged</option>
                             </select>
                             
                           
