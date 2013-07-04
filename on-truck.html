@@ -136,7 +136,6 @@
                 }
             });
             var renderItems = function(rsp) {
-				
                 var isBoxes = false;
                 $(rsp.boxes).each(function(i) {
                     $(this).each(function(j) {
@@ -212,18 +211,16 @@
                         renderItems(rsp);
                     },
                     error: function(err) {
-					
                         $.mobile.hidePageLoadingMsg();
                        //  jAlert('error while processing ...','');
                         jAlert('error while processing ...','');
                     }
                 });
             });
-            
-			$.mobile.showPageLoadingMsg();
+            $.mobile.showPageLoadingMsg();
             $.ajax({
                 type: "POST",
-                url: "http://122.170.100.48:8086/content/onto-truck/",
+                url: "http://122.170.100.48:8086/content/onto-truck",
                 data: {
                     state: 'new'
                 },
@@ -236,7 +233,7 @@
                     }
                     $(".header .account").html(rsp.date + "<BR>" + rsp.account);
                     $(".job-name").html(rsp.jobname);
-                 //	alert('+++++'+JSON.stringify(rsp));
+                 	alert('+++++'+JSON.stringify(rsp));
 				    renderItems(rsp);
                 },
                 error: function(err) {
