@@ -97,12 +97,13 @@ a:hover {color:#ccc; text-decoration:none}
     <script type="text/javascript" charset="utf-8" src=""></script>
    <!-- <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
      --> 
-       <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
-	    <script type="text/javascript" charset="utf-8" src="PrintPlugin.js"></script>
+       
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/jquery.mobile-1.0.min.js"></script>
-    <script src="js/jquery.colorbox.min.js"></script> 
+    <script src="js/jquery.colorbox.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="PrintPlugin.js"></script>
 <script>  <!--Modal JS -->	 
 	 $(document).ready(function() {	
 	//select all the a tag with name equal to modal
@@ -198,8 +199,6 @@ a:hover {color:#ccc; text-decoration:none}
 	
 });
 </script>
-
-	 
 	 
 	 <script type="text/javascript" charset="utf-8">
    
@@ -215,9 +214,16 @@ a:hover {color:#ccc; text-decoration:none}
 
     // Cordova is ready to be used!
     //
-    function onDeviceReady() {
+    function onDeviceReady()
+    {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
+        
+        window.plugins.printPlugin.isPrintingAvailable(
+                                                       function(result){
+                                                       alert(result.available ? "Printing is available" : "Printing NOT available");
+                                                       }
+                                                       );
     }
 
     // Called when a photo is successfully retrieved
@@ -369,7 +375,8 @@ a:hover {color:#ccc; text-decoration:none}
             }
         }
         var params = getParams();
-        function print(html) {
+        function print(html)
+        {
             //Get HTML string
             //alert(html);
             
@@ -377,7 +384,8 @@ a:hover {color:#ccc; text-decoration:none}
             Pass a DOM node (or HTML string) and - optionally - success function, error function, position of print dialog (iPad only).
             */
             window.plugins.printPlugin.print(html,
-                function(result) {
+                function(result)
+                                             {
                     //alert("Printing successful");
                     jAlert('Printing successful','');
                 },

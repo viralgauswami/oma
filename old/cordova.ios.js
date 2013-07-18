@@ -5224,5 +5224,3 @@ window.cordova = require('cordova');
 
 
 })();
-
-
